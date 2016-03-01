@@ -1,0 +1,123 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.neenbedankt.gradle.plugins:android-apt:${rootProject.ext.androidAptVersion}"
+        classpath "com.jakewharton.hugo:hugo-plugin:${rootProject.ext.hugoVersion}"
+    }
+}
+
+
+apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.hugo'
+apply plugin: 'android-apt'
+
+
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0].processResources.manifestFile
+        resourcePackageName 'com.richardradics.core'
+    }
+}
+
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'LICENSE'
+        exclude 'LICENSE.txt'
+    }
+
+
+
+    sourceSets {
+        main { assets.srcDirs = ['src/main/assets'] }
+    }
+
+}
+
+apply from: "build.workaround-missing-resource.gradle"
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile project(':commons')
+
+    compile "com.android.support:appcompat-v7:${rootProject.ext.appcompatVersion}"
+    compile "com.android.support:support-v4:${rootProject.ext.supportV4}"
+
+    compile "com.android.support:recyclerview-v7:${rootProject.ext.recyclerViewVersion}"
+    compile "com.android.support:cardview-v7:${rootProject.ext.cardViewVersion}"
+    compile "com.android.support:palette-v7:${rootProject.ext.paletteVersion}"
+    compile "com.android.support:support-v13:${rootProject.ext.supportV13}"
+
+    apt "org.androidannotations:androidannotations:${rootProject.ext.androidAnnotationsVersion}"
+    compile "org.androidannotations:androidannotations-api:${rootProject.ext.androidAnnotationsVersion}"
+
+    compile "com.squareup.picasso:picasso:${rootProject.ext.picassoVersion}"
+    compile "com.squareup.retrofit:retrofit:${rootProject.ext.retrofitVersion}"
+    compile "com.squareup.okhttp:okhttp-urlconnection:${rootProject.ext.okhttpUrlConnection}"
+    compile "com.squareup.okhttp:okhttp:${rootProject.ext.okhttpVersion}"
+
+    compile "com.github.traex.expandablelayout:library:${rootProject.ext.expandableLayout}"
+
+    compile "com.nispok:snackbar:${rootProject.ext.snackbar}"
+
+    compile "uk.co.chrisjenx:calligraphy:${rootProject.ext.calligraphy}"
+
+    compile "com.snappydb:snappydb-lib:${rootProject.ext.snappyDb}"
+    compile "com.esotericsoftware.kryo:kryo:${rootProject.ext.kryo}"
+
+    compile "javax.annotation:jsr250-api:${rootProject.ext.jsr250Version}"
+
+    compile "com.pnikosis:materialish-progress:${rootProject.ext.materialProgress}"
+
+    testCompile "junit:junit:${rootProject.ext.junitVer}"
+    testCompile ("org.mockito:mockito-core:${rootProject.ext.mockitoVer}"){
+        exclude group: 'org.objenesis'
+    }
+    testCompile ("com.squareup:fest-android:${rootProject.ext.festVer}"){
+        exclude group: 'com.android.support'
+    }
+    testCompile("org.robolectric:robolectric:${rootProject.ext.robolectricVer}") {
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
+
+    testCompile 'com.squareup.okhttp:mockwebserver:2.3.0'
+    testCompile 'org.powermock:powermock-module-junit4-rule-agent:1.6.2'
+}
+
+
+
+repositories {
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+    maven { url 'http://download.crashlytics.com/maven' }
+
+}
+
