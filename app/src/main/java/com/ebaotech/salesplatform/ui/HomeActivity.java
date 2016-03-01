@@ -5,12 +5,12 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.ebaotech.salesplatform.R;
-import com.ebaotech.salesplatform.app.CleanActivity;
 import com.ebaotech.salesplatform.domain.Customer;
 
 import org.androidannotations.annotations.AfterViews;
@@ -21,7 +21,7 @@ import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_home)
 @OptionsMenu(R.menu.menu_section)
-public class HomeActivity extends CleanActivity implements CustomerItemListFragment.OnListFragmentInteractionListener {
+public class HomeActivity extends AppCompatActivity implements CustomerItemListFragment.OnListFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
