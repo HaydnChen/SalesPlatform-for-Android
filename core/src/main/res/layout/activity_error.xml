@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    tools:context="com.richardradics.core.app.ErrorActivity">
+    tools:context="com.ebaotech.salesplatform.core.app.ErrorActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

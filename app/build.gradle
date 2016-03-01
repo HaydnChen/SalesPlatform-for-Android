@@ -31,7 +31,7 @@ apt {
     arguments {
         androidManifestFile variant.outputs[0].processResources.manifestFile
 
-        resourcePackageName 'com.richardradics.cleanaa'
+        resourcePackageName 'com.ebaotech.salesplatform'
     }
 }
 
@@ -41,7 +41,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.richardradics.cleanaa"
+        applicationId "com.ebaotech.salesplatform"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

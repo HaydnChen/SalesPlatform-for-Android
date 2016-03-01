@@ -13,7 +13,7 @@
         android:layout_height="1px"
         android:background="@android:color/transparent" />
 
-    <com.richardradics.commons.widget.echeckbox.EnhancedCheckbox
+    <com.ebaotech.salesplatform.commons.widget.echeckbox.EnhancedCheckbox
         android:id="@+id/parentCheckbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         android:text="Összes típus"
         android:visibility="visible" />
 
-    <com.richardradics.commons.widget.ExpandableHeightGridView
+    <com.ebaotech.salesplatform.commons.widget.ExpandableHeightGridView
         android:id="@+id/childPickGridView"
         android:layout_width="match_parent"
         android:layout_height="10000dip"
