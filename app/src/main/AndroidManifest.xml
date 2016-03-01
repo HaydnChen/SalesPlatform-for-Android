@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         tools:replace="icon, name" >
         <activity
-            android:name=".ui.MainActivity_"
+            android:name=".ui.HomeActivity_"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

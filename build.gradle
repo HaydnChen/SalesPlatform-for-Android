@@ -32,6 +32,7 @@ ext{
     appcompatVersion = '23.1.1'
     cardViewVersion = '23.1.1'
     recyclerViewVersion = '23.1.1'
+    designVersion = '23.1.1'
     paletteVersion = '21.0.3'
 
     picassoVersion = '2.5.2'

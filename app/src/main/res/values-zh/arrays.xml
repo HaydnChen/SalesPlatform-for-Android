@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="section_labels">
+        <item>首页</item>
+        <item>客户</item>
+        <item>财务需求分析（FNA）</item>
+        <item>询价和利益展示</item>
+        <item>保单查询</item>
+    </string-array>
+</resources>

@@ -2,7 +2,7 @@ package com.ebaotech.salesplatform.core.app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.ebaotech.salesplatform.commons.util.ErrorUtil;
@@ -12,7 +12,6 @@ import com.ebaotech.salesplatform.core.retrofit.NoConnectivityListener;
 import com.ebaotech.salesplatform.core.util.CommonUseCases;
 import com.ebaotech.salesplatform.core.util.LoadAndToast;
 
-
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 
@@ -20,7 +19,7 @@ import org.androidannotations.annotations.EActivity;
  * Created by radicsrichard on 15. 04. 28..
  */
 @EActivity
-public abstract class BaseActivity extends ActionBarActivity implements NoConnectivityListener {
+public abstract class BaseActivity extends AppCompatActivity implements NoConnectivityListener {
 
     @Bean
     protected Navigator navigator;

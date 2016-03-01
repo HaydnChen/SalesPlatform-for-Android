@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="section_labels">
+        <item>Home</item>
+        <item>Customer</item>
+        <item>FNA</item>
+        <item>Quotation &amp; Illustration</item>
+        <item>Policy</item>
+    </string-array>
+</resources>
