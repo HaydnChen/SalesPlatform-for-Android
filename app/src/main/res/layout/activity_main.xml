@@ -3,7 +3,7 @@
     android:id="@+id/content_overlay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.richardradics.ui.MainActivity">
+    tools:context="com.ebaotech.salesplatform.ui.MainActivity">
 
     <include
         android:id="@+id/toolbar"

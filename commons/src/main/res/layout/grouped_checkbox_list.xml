@@ -9,7 +9,7 @@
     >
 
 
-    <com.richardradics.commons.widget.echeckbox.EnhancedCheckbox
+    <com.ebaotech.salesplatform.commons.widget.echeckbox.EnhancedCheckbox
         android:id="@+id/parentCheckbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
 
     </LinearLayout>
 
-    <com.richardradics.commons.widget.SimpleListView
+    <com.ebaotech.salesplatform.commons.widget.SimpleListView
         android:id="@+id/childListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.richardradics.core">
+    package="com.ebaotech.salesplatform.core">
 
     <application
         android:name=".app.BaseApplication_"
