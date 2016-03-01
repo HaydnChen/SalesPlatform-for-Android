@@ -71,7 +71,7 @@ public class CustomerItemListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            //recyclerView.setAdapter(new CustomerItemListRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            //recyclerView.setAdapter(new CustomerItemListRecyclerViewAdapter(Customer, mListener));
         }
         return view;
     }

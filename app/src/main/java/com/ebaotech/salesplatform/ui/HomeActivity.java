@@ -1,27 +1,23 @@
 package com.ebaotech.salesplatform.ui;
 
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.ebaotech.salesplatform.R;
-import com.ebaotech.salesplatform.domain.Customer;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_home)
 @OptionsMenu(R.menu.menu_section)
-public class HomeActivity extends AppCompatActivity implements CustomerItemListFragment.OnListFragmentInteractionListener {
+public class HomeActivity extends AppCompatActivity  {
+        //implements CustomerItemListFragment.OnListFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -36,7 +32,7 @@ public class HomeActivity extends AppCompatActivity implements CustomerItemListF
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-    @ViewById(R.id.container)
+    @ViewById(R.id.my_view_pager)
     ViewPager mViewPager;
     @ViewById(R.id.my_toolbar)
     Toolbar toolbar;
@@ -45,6 +41,8 @@ public class HomeActivity extends AppCompatActivity implements CustomerItemListF
     @AfterViews
     void initHomePage() {
         setSupportActionBar(toolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), this.getApplicationContext());
@@ -53,7 +51,7 @@ public class HomeActivity extends AppCompatActivity implements CustomerItemListF
         mViewPager.setAdapter(mSectionsPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
 
-        initTabIcon();
+        //initTabIcon();
     }
 
     private void initTabIcon() {
@@ -64,19 +62,13 @@ public class HomeActivity extends AppCompatActivity implements CustomerItemListF
         tabLayout.getTabAt(4).setIcon(R.drawable.ic_action_folder_open);
     }
 
-    @ViewById(R.id.fab) FloatingActionButton fab;
-    @Click(R.id.fab)
-    void fabOnClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_section, menu);
-//        return true;
+//    @ViewById(R.id.fab) FloatingActionButton fab;
+//    @Click(R.id.fab)
+//    void fabOnClick(View view) {
+//        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show();
 //    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -93,8 +85,9 @@ public class HomeActivity extends AppCompatActivity implements CustomerItemListF
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onListFragmentInteraction(Customer item) {
-        // TODO: 2/27/16 12:51 AM
-    }
+//    @Override
+//    public void onListFragmentInteraction(Customer item) {
+//        // TODO: 2/27/16 12:51 AM
+//        super.onListFragmentInteraction()
+//    }
 }

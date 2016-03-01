@@ -21,17 +21,19 @@ public class SectionsFragment extends Fragment {
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    @ViewById(R.id.section_label) TextView textView;
+    @ViewById(R.id.section_label)
+    TextView textView;
 
     public SectionsFragment() {
     }
+
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
     public static SectionsFragment newInstance(int sectionNumber) {
-        SectionsFragment fragment = new SectionsFragment();
+        SectionsFragment fragment = new SectionsFragment_();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
