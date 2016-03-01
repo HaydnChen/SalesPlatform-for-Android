@@ -38,13 +38,13 @@ public class HomeActivity extends CleanActivity implements CustomerItemListFragm
      */
     @ViewById(R.id.container)
     ViewPager mViewPager;
-    @ViewById(R.id.the_toolbar)
+    @ViewById(R.id.my_toolbar)
     Toolbar toolbar;
     @ViewById(R.id.tabs) TabLayout tabLayout;
 
     @AfterViews
     void initHomePage() {
-        //setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), this.getApplicationContext());
