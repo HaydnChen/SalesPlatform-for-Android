@@ -27,11 +27,11 @@ ext{
     godotVersion = '+'
     jsr250Version = '1.0'
 
-    supportV4 = '21.0.3'
+    supportV4 = '23.1.1'
     supportV13 = '21.0.3'
-    appcompatVersion = '21.0.3'
-    cardViewVersion = '21.0.3'
-    recyclerViewVersion = '21.0.3'
+    appcompatVersion = '23.1.1'
+    cardViewVersion = '23.1.1'
+    recyclerViewVersion = '23.1.1'
     paletteVersion = '21.0.3'
 
     picassoVersion = '2.5.2'
