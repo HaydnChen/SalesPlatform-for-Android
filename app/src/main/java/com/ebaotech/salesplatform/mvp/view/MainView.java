@@ -1,7 +1,7 @@
 package com.ebaotech.salesplatform.mvp.view;
 
-import com.ebaotech.salesplatform.mvp.view.model.MainListViewModel;
 import com.ebaotech.salesplatform.core.mvp.View;
+import com.ebaotech.salesplatform.mvp.view.model.MainListViewModel;
 
 import java.util.List;
 
@@ -10,6 +10,6 @@ import java.util.List;
  */
 public interface MainView extends View {
 
-    public void setListViewModels(List<MainListViewModel> mainListViewModelList);
+    void setListViewModels(List<MainListViewModel> mainListViewModelList);
 
 }

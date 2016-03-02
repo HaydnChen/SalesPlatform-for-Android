@@ -1,6 +1,6 @@
-package com.ebaotech.salesplatform.domain;
+package com.ebaotech.salesplatform.mvp.view.model.customer;
 
-public class Customer {
+public class CustomerListViewModel {
 
     private String id;
     private String name;
@@ -8,11 +8,34 @@ public class Customer {
     private String gender;
     private String details;
 
-    public Customer(String id, String name, int age, String gender, String details) {
+    public CustomerListViewModel() {
+    }
+
+    public CustomerListViewModel(String id, String name, int age, String gender, String details) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;
+        this.details = details;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setDetails(String details) {
         this.details = details;
     }
 

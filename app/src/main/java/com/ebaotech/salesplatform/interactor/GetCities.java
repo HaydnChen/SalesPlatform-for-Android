@@ -12,7 +12,7 @@ public interface GetCities {
     void getCities(Double latitude, Double longitude, Integer count, Callback callback);
 
     interface Callback {
-        void onCitiesoaded(List<City> cityList);
+        void onCitiesLoaded(List<City> cityList);
         void onError(Exception e);
     }
 

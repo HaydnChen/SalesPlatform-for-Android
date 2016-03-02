@@ -1,13 +1,13 @@
 package com.ebaotech.salesplatform.mvp.presenter;
 
-import com.ebaotech.salesplatform.domain.City;
-import com.ebaotech.salesplatform.interactor.GetCitiesImp;
 import com.ebaotech.salesplatform.app.AppConfig;
-import com.ebaotech.salesplatform.interactor.GetCities;
-import com.ebaotech.salesplatform.mvp.view.MainView;
-import com.ebaotech.salesplatform.mvp.view.model.MainListViewModel;
 import com.ebaotech.salesplatform.core.mvp.Presenter;
 import com.ebaotech.salesplatform.core.mvp.View;
+import com.ebaotech.salesplatform.domain.City;
+import com.ebaotech.salesplatform.interactor.GetCities;
+import com.ebaotech.salesplatform.interactor.GetCitiesImpl;
+import com.ebaotech.salesplatform.mvp.view.MainView;
+import com.ebaotech.salesplatform.mvp.view.model.MainListViewModel;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
@@ -24,7 +24,7 @@ public class MainPresenter extends BasePresenter implements Presenter {
 
     private MainView mainView;
 
-    @Bean(GetCitiesImp.class)
+    @Bean(GetCitiesImpl.class)
     GetCities getCities;
 
     @Override
@@ -38,7 +38,7 @@ public class MainPresenter extends BasePresenter implements Presenter {
         mainView.showLoading("Loading");
         getCities.getCities(AppConfig.TEST_DATA.BP_LATITUDE, AppConfig.TEST_DATA.BP_LONGITUDE, AppConfig.TEST_DATA.DEFAULT_COUNT, new GetCities.Callback() {
             @Override
-            public void onCitiesoaded(List<City> citiesList) {
+            public void onCitiesLoaded(List<City> citiesList) {
                 mainView.setListViewModels(convertToMainModel(citiesList));
                 mainView.hideLoading(true);
             }

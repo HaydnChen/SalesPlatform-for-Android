@@ -11,7 +11,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 /**
- * A placeholder fragment containing a simple view.
+ * A placeholder fragment containing a simple fragementView.
  */
 @EFragment(R.layout.fragment_section)
 public class SectionsFragment extends Fragment {

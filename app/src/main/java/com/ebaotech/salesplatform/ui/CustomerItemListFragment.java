@@ -6,14 +6,26 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.ebaotech.salesplatform.R;
 import com.ebaotech.salesplatform.domain.Customer;
+import com.ebaotech.salesplatform.mvp.presenter.CustomerListPresenter;
+import com.ebaotech.salesplatform.mvp.view.CustomerListView;
+import com.ebaotech.salesplatform.mvp.view.model.customer.CustomerListModelAdapter;
+import com.ebaotech.salesplatform.mvp.view.model.customer.CustomerListViewModel;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
+
+import java.util.List;
+
+/*
+ *  Copyright (c) 2016.  ebaotech.com. All rights reserved.
+ *  Author: Zhu Liliang; Date:3/3/16 12:03 AM
+ */
 
 /**
  * A fragment representing a list of Items.
@@ -22,13 +34,20 @@ import org.androidannotations.annotations.EFragment;
  * interface.
  */
 @EFragment(R.layout.fragment_customer_list)
-public class CustomerItemListFragment extends Fragment {
+public class CustomerItemListFragment extends Fragment implements CustomerListView {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
-    private int mColumnCount;
+    private int columnCount;
     private OnListFragmentInteractionListener mListener;
+
+    @ViewById(R.id.customer_list) View view;
+
+    @Bean
+    CustomerListPresenter customerListPresenter;
+
+    private CustomerListModelAdapter customerListModelAdapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -37,44 +56,40 @@ public class CustomerItemListFragment extends Fragment {
     public CustomerItemListFragment() {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
+    /**
+     * return a new instance
+     * @param columnCount
+     * @return
+     */
     public static CustomerItemListFragment newInstance(int columnCount) {
-        CustomerItemListFragment fragment = new CustomerItemListFragment();
+        CustomerItemListFragment fragment = new CustomerItemListFragment_();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
     }
 
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
+    @AfterViews
+    void onAfterViews() {
+        //setup customer fragment
+        setupCustomerCardView(3);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_customer_list, container, false);
-
+    private void setupCustomerCardView(int columnCount) {
+        this.columnCount = columnCount;
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
+            if (columnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                recyclerView.setLayoutManager(new GridLayoutManager(context, columnCount));
             }
-            //recyclerView.setAdapter(new CustomerItemListRecyclerViewAdapter(Customer, mListener));
+            customerListPresenter.setView(this);
         }
-        return view;
     }
+
 
 
     @Override
@@ -92,6 +107,50 @@ public class CustomerItemListFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        customerListPresenter.start();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        customerListPresenter.stop();
+    }
+
+    @Override
+    public void setListViewModels(List<CustomerListViewModel> customerListViewModels) {
+        if (customerListModelAdapter == null) {
+            customerListModelAdapter = new CustomerListModelAdapter();
+            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView.setAdapter(customerListModelAdapter);
+        }
+        customerListModelAdapter.addAll(customerListViewModels);
+    }
+
+
+    @Override
+    public void showLoading(String message) {
+//        progress.showLoading(this, message);
+    }
+
+    @Override
+    public void hideLoading(boolean sucess) {
+//        progress.endLoading(sucess);
+    }
+
+    @Override
+    public void showActionLabel(String message) {
+//        cleanErrorHandler.showSnackBar(message);
+    }
+
+    @Override
+    public void hideActionLabel() {
+
     }
 
     /**

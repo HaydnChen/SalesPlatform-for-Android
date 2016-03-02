@@ -1,49 +1,68 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/customer_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="8dp"
     card_view:cardCornerRadius="4dp">
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/customer_photo"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="16dp" />
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/customer_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/customer_photo"
-            android:textSize="28sp" />
+            <ImageView
+                android:id="@+id/customer_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="16dp"
+                />
 
-        <TextView
-            android:id="@+id/customer_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/customer_name"
-            android:layout_marginLeft="6dp" />
+            <TextView
+                android:id="@+id/customer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/customer_photo"
+                android:textSize="28sp"
+                android:text="Leaner"/>
 
-        <TextView
-            android:id="@+id/customer_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/customer_name"
-            android:layout_toRightOf="@+id/customer_age"
-            android:paddingLeft="2dp" />
+            <TextView
+                android:id="@+id/customer_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/customer_name"
+                android:layout_toRightOf="@+id/customer_photo"
+                android:paddingLeft="2dp"
+                android:text="39 years old"/>
+            <TextView
+                android:id="@+id/customer_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/customer_name"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@+id/customer_age"
+                android:text="Male"/>
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/customer_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/customer_age"
+                android:layout_toRightOf="@+id/customer_photo"
+                android:paddingLeft="2dp"
+                android:text="sdfasfsfsaffasfsafafasafasfasfsafsaf"/>
+
+        </RelativeLayout>
+    </FrameLayout>
 </android.support.v7.widget.CardView>
 
     <!--
