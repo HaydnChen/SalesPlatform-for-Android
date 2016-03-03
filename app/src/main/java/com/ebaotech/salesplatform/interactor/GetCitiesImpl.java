@@ -11,11 +11,13 @@ import java.util.List;
 
 import hugo.weaving.DebugLog;
 
-/**
- * Created by radicsrichard on 15. 05. 13..
+/*
+ *  Copyright (c) 2016.  ebaotech.com. All rights reserved.
+ *  Author: Zhu Liliang; Date:3/2/16 10:28 PM
  */
+
 @EBean
-public class GetCitiesImp extends BaseInteractor implements GetCities {
+public class GetCitiesImpl extends BaseInteractor implements GetCities {
 
     private Callback callback;
 
@@ -35,7 +37,7 @@ public class GetCitiesImp extends BaseInteractor implements GetCities {
     @UiThread
     @DebugLog
     public void onItemsLoaded(List<City> cityList) {
-        callback.onCitiesoaded(cityList);
+        callback.onCitiesLoaded(cityList);
     }
 
     @UiThread

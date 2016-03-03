@@ -1,7 +1,15 @@
 <resources>
-    <string name="app_name">MVP Bootstrap</string>
-
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_detail">DetailActivity</string>
+
+    <string name="app_name">SalesPlatform</string>
+    <string name="title_activity_home">eBaoTech © SalesPlatform</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="section_home_label">Home</string>
+    <string name="section_customer_label">Customer</string>
+    <string name="section_fna_label">FNA</string>
+    <string name="section_quotation_label">Quotation &amp; Illustration</string>
+    <string name="section_policy_label">Policy</string>
 </resources>

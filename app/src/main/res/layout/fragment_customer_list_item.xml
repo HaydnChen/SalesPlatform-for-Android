@@ -1,0 +1,91 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/customer_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="4dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/customer_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="16dp"
+                android:contentDescription="person photo" />
+
+            <TextView
+                android:id="@+id/customer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/customer_photo"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Leaner"/>
+
+            <TextView
+                android:id="@+id/customer_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:linksClickable="@bool/sb__is_phone"
+                android:layout_below="@+id/customer_name"
+                android:layout_toRightOf="@+id/customer_photo"
+                android:paddingLeft="2dp"
+                android:text="39 years old"/>
+            <TextView
+                android:id="@+id/customer_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/customer_name"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@+id/customer_age"
+                android:text="Male"/>
+
+            <TextView
+                android:id="@+id/customer_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/customer_age"
+                android:layout_toRightOf="@+id/customer_photo"
+                android:paddingLeft="2dp"
+                android:text="sdfasfsfsaffasfsafafasafasfasfsafsaf"/>
+
+        </RelativeLayout>
+    </FrameLayout>
+</android.support.v7.widget.CardView>
+
+    <!--
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:textAppearance="?attr/textAppearanceListItem" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:textAppearance="?attr/textAppearanceListItem" />
+    </LinearLayout>
+    -->

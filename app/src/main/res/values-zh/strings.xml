@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">销售平台</string>
+    <string name="section_customer_label">客户</string>
+    <string name="section_fna_label">财务需求分析（FNA）</string>
+    <string name="section_home_label">首页</string>
+    <string name="section_policy_label">保单查询</string>
+    <string name="section_quotation_label">询价和利益展示</string>
+    <string name="action_settings">配置</string>
+    <string name="title_activity_home">易保©移动展业平台</string>
+</resources>

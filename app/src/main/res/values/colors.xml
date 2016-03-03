@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<!--Zurich-->
+    <color name="colorPrimary">#608CC8</color>
+    <color name="colorPrimaryDark">#4066B2</color>
+    <color name="colorPrimaryLight">#EBEFF7</color>
+    <color name="colorAccent">#D0D9EC</color>
+
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#727272</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
+
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
+
     <!--Application palette-->
     <item name="material_blue_500" type="color">#2196F3</item>
     <item name="material_blue_800" type="color">#1565C0</item>

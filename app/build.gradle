@@ -76,6 +76,7 @@ dependencies {
     compile "com.android.support:appcompat-v7:${rootProject.ext.appcompatVersion}"
     compile "com.android.support:support-v4:${rootProject.ext.supportV4}"
     compile "com.android.support:recyclerview-v7:${rootProject.ext.recyclerViewVersion}"
+    compile "com.android.support:design:${rootProject.ext.designVersion}"
 
     compile project(':core')
 
