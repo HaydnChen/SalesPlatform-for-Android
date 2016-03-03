@@ -23,7 +23,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="16dp"
-                />
+                android:contentDescription="person photo" />
 
             <TextView
                 android:id="@+id/customer_name"
@@ -32,13 +32,15 @@
                 android:layout_alignParentLeft="false"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/customer_photo"
-                android:textSize="28sp"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:text="Leaner"/>
 
             <TextView
                 android:id="@+id/customer_age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:linksClickable="@bool/sb__is_phone"
                 android:layout_below="@+id/customer_name"
                 android:layout_toRightOf="@+id/customer_photo"
                 android:paddingLeft="2dp"

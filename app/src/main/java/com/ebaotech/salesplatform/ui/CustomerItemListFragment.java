@@ -18,6 +18,7 @@ import com.ebaotech.salesplatform.mvp.view.model.customer.CustomerListViewModel;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
@@ -90,11 +91,18 @@ public class CustomerItemListFragment extends Fragment implements CustomerListVi
         }
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        //setup customer fragment
+//        setupCustomerCardView(3);
+    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        //setup customer fragment
+//        setupCustomerCardView(3);
         if (context instanceof OnListFragmentInteractionListener) {
             mListener = (OnListFragmentInteractionListener) context;
         } else {
@@ -123,12 +131,13 @@ public class CustomerItemListFragment extends Fragment implements CustomerListVi
     }
 
     @Override
+    @UiThread
     public void setListViewModels(List<CustomerListViewModel> customerListViewModels) {
         if (customerListModelAdapter == null) {
             customerListModelAdapter = new CustomerListModelAdapter();
-            RecyclerView recyclerView = (RecyclerView) view;
-            recyclerView.setAdapter(customerListModelAdapter);
         }
+        RecyclerView recyclerView = (RecyclerView) view;
+        recyclerView.setAdapter(customerListModelAdapter);
         customerListModelAdapter.addAll(customerListViewModels);
     }
 
