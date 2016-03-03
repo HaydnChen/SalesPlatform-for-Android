@@ -16,7 +16,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:singleLine="true"
-            android:text="Toolbar title"
+            android:text="@string/title_activity_home"
             android:textColor="@color/colorPrimaryLight"
             android:textSize="18sp"
             android:textStyle="bold" />

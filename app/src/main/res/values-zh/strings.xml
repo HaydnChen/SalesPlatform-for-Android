@@ -8,4 +8,7 @@
     <string name="section_quotation_label">询价和利益展示</string>
     <string name="action_settings">配置</string>
     <string name="title_activity_home">易保©移动展业平台</string>
+    <string name="nav_menu__setting">配置</string>
+    <string name="navigation_drawer_close">关闭菜单</string>
+    <string name="navigation_drawer_open">开启菜单</string>
 </resources>
