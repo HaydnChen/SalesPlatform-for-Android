@@ -1,10 +1,9 @@
-[![Build Status](https://travis-ci.org/richardradics/MVPAndroidBootstrap.svg?branch=master)](https://travis-ci.org/richardradics/MVPAndroidBootstrap/builds) 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MVPAndroidBootstrap-brightgreen.svg?style=flat)](http://android-arsenal.com/details/3/1824)
+# 基本功能
+客户管理 （working）
+询价及利益展示（working）
+多语言
 
 
-A project which showcases usage of AndroidAnnotions among other open source libraries.
-
-![Showcase](image.gif)
 
 # Features
 * Model-View-Presenter architectural pattern
