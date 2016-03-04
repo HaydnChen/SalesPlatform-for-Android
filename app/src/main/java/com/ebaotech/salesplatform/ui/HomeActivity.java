@@ -32,7 +32,7 @@ public class HomeActivity extends CleanActivity implements HomeView, CustomerIte
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //setup tab bar ("Customer|FNA|QNI|...")
+        //setup tab bar ("CustomerBo|FNA|QNI|...")
         setupTabBar();
 
     }

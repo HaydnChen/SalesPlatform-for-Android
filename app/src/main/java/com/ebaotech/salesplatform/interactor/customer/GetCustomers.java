@@ -1,5 +1,6 @@
 package com.ebaotech.salesplatform.interactor.customer;
 
+import com.ebaotech.salesplatform.core.bo.CustomerBo;
 import com.ebaotech.salesplatform.domain.Customer;
 
 import java.util.List;
@@ -15,4 +16,8 @@ public interface GetCustomers {
         void onCustomersLoaded(List<Customer> customerList);
         void onError(Exception e);
     }
+
+    Customer convertToDomain(CustomerBo customerBo);
+
+    List<Customer> convertToDomain(List<CustomerBo> customerBoList);
 }
