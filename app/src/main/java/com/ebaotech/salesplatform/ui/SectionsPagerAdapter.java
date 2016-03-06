@@ -31,7 +31,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment;
 
         if (position == 1) {
-            fragment = CustomerItemListFragment.newInstance(3);
+            fragment = CustomerItemListFragment.newInstance();
 //            fragment = SectionsFragment.newInstance(position + 1);
         } else {
             fragment = SectionsFragment.newInstance(position + 1);
@@ -74,4 +74,5 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         }
         return null;
     }
+
 }
