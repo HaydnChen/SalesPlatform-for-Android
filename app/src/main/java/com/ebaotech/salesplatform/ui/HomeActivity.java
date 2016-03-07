@@ -1,5 +1,6 @@
 package com.ebaotech.salesplatform.ui;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -123,7 +124,8 @@ public class HomeActivity extends CleanActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_manage) {
-
+            startActivity(new Intent(this, SettingsActivity.class));
+            return true;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.all_activity__drawer_layout);

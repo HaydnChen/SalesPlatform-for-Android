@@ -21,7 +21,7 @@ import org.androidannotations.annotations.ViewById;
 @EActivity
 public class CleanActivity extends BaseActivity {
 
-    @ViewById(R.id.toolbar)
+    @ViewById(R.id.my_toolbar)
     protected Toolbar toolbar;
 
 
