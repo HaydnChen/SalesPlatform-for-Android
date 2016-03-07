@@ -66,13 +66,12 @@ public class CustomerItemListFragment extends Fragment implements CustomerListVi
     @AfterViews
     void onAfterViews() {
         //setup customer fragment
-
         setupCustomerCardView();
     }
 
     private void setupCustomerCardView() {
         int deviceWidthInpixes = DensityUtil.getDeviceWidthInPixes(this.getContext());
-        //contact card width is around 800
+        //contact card width is around 600
         int columnCount = deviceWidthInpixes / Constants.Screen.CARD_WIDTH_IN_PIXES;
         // Set the adapter
         if (view instanceof RecyclerView) {
