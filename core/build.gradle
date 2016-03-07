@@ -52,7 +52,10 @@ android {
 
 
     sourceSets {
-        main { assets.srcDirs = ['src/main/assets'] }
+        main {
+			jniLibs.srcDir file('jniLibs')
+			assets.srcDirs = ['assets'] 
+		}
     }
 
 }
