@@ -34,8 +34,8 @@ public class SQLiteOrmWithCipherHelper extends OrmLiteSqliteOpenHelper {
 
   public SQLiteOrmWithCipherHelper(Context context) {
     // todo you need to obtain password in better way
-    super(context, DATABASE_NAME, null, DATABASE_VERSION, DATABASE_PASSWORD);
-    SQLiteDatabase.loadLibs(context);
+    super(context.getApplicationContext(), DATABASE_NAME, null, DATABASE_VERSION, DATABASE_PASSWORD);
+    SQLiteDatabase.loadLibs(context.getApplicationContext());
     this.getWritableDatabase(DATABASE_PASSWORD);
   }
 
