@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.ebaotech.salesplatform.R;
+import com.ebaotech.salesplatform.commons.util.Constants;
 import com.ebaotech.salesplatform.commons.util.DensityUtil;
 import com.ebaotech.salesplatform.domain.Customer;
 import com.ebaotech.salesplatform.mvp.presenter.CustomerListPresenter;
@@ -37,10 +38,6 @@ import java.util.List;
 @EFragment(R.layout.fragment_customer_list)
 public class CustomerItemListFragment extends Fragment implements CustomerListView {
 
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
-    private int columnCount;
     private OnListFragmentInteractionListener mListener;
 
     @ViewById(R.id.customer_list) View view;
@@ -59,11 +56,11 @@ public class CustomerItemListFragment extends Fragment implements CustomerListVi
 
     /**
      * return a new instance
-     * @return
+     * @return CustomerItemListFragment
      */
     public static CustomerItemListFragment newInstance() {
-        CustomerItemListFragment fragment = new CustomerItemListFragment_();
-        return fragment;
+        //CustomerItemListFragment fragment = new CustomerItemListFragment_();
+        return new CustomerItemListFragment_();
     }
 
     @AfterViews
@@ -76,7 +73,7 @@ public class CustomerItemListFragment extends Fragment implements CustomerListVi
     private void setupCustomerCardView() {
         int deviceWidthInpixes = DensityUtil.getDeviceWidthInPixes(this.getContext());
         //contact card width is around 800
-        this.columnCount = deviceWidthInpixes / 800;
+        int columnCount = deviceWidthInpixes / Constants.Screen.CARD_WIDTH_IN_PIXES;
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
