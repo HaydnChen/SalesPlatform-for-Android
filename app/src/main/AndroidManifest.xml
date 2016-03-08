@@ -29,6 +29,8 @@
             android:name=".ui.DetailActivity_"
             android:label="@string/title_activity_detail" >
         </activity>
+        <activity android:name=".ui.CustomerDetailActivity_"
+            android:label="@string/title_customer_detail"/>
     </application>
 
 </manifest>

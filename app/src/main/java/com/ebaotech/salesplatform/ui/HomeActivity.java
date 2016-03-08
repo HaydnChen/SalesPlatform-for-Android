@@ -10,8 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.ebaotech.salesplatform.R;
-import com.ebaotech.salesplatform.app.CleanActivity;
-import com.ebaotech.salesplatform.domain.Customer;
 import com.ebaotech.salesplatform.mvp.view.HomeView;
 
 import org.androidannotations.annotations.AfterViews;
@@ -21,10 +19,8 @@ import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_home)
 @OptionsMenu(R.menu.menu_section)
-public class HomeActivity extends CleanActivity
-        implements HomeView,
-        CustomerItemListFragment.OnListFragmentInteractionListener,
-        NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends AbstractActivity
+        implements HomeView, NavigationView.OnNavigationItemSelectedListener {
 
     @ViewById(R.id.my_view_pager)
     ViewPager viewPager;
@@ -59,7 +55,7 @@ public class HomeActivity extends CleanActivity
 
 
     private void setupTabBar() {
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), this.getApplicationContext());
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this);
 
         // Set up the ViewPager with the sections adapter.
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -86,32 +82,6 @@ public class HomeActivity extends CleanActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    @Override
-    public void showLoading(String message) {
-        progress.showLoading(this, message);
-    }
-
-    @Override
-    public void hideLoading(boolean sucess) {
-        progress.endLoading(sucess);
-    }
-
-    @Override
-    public void showActionLabel(String message) {
-        cleanErrorHandler.showSnackBar(message);
-    }
-
-    @Override
-    public void hideActionLabel() {
-
-    }
-
-    @Override
-    public void onListFragmentInteraction(Customer item) {
-        // TODO: 3/3/16 1:01 AM
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
