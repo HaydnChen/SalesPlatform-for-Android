@@ -83,6 +83,8 @@ public class HomeActivity extends CleanActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            //startActivity(new Intent(this, SettingsActivity_.class));
+            SettingsActivity_.intent(this).start();
             return true;
         }
 
@@ -124,7 +126,7 @@ public class HomeActivity extends CleanActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_manage) {
-            startActivity(new Intent(this, SettingsActivity.class));
+            startActivity(new Intent(this, SettingsActivity_.class));
             return true;
         }
 
