@@ -70,7 +70,7 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
     }
 
     /**
-     * ViewHolder for Customer List (Home page)
+     * ViewHolder for CustomerBo List (Home page)
      */
     public class CustomerListViewHolder extends RecyclerView.ViewHolder {
         View view;

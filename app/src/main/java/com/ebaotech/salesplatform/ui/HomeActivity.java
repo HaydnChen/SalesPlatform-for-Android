@@ -40,7 +40,7 @@ public class HomeActivity extends CleanActivity
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //setup tab bar ("Customer|FNA|QNI|...")
+        //setup tab bar ("CustomerBo|FNA|QNI|...")
         setupTabBar();
 
 
