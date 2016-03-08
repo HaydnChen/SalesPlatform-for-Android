@@ -1,7 +1,8 @@
 package com.ebaotech.salesplatform.commons.util;
 
 /**
- * Created by Rcsk on 2014.09.25..
+ * Copyright (C) 2016 ebaotech.com. All rights reserved.
+ * Author: Liliang Zhu; Date:2014.09.25..
  */
 public class Constants {
 
@@ -24,8 +25,10 @@ public class Constants {
     public static class Text{
         public static final String DOUBLE_LINE_SEP = "\n\n";
         public static final String SINGLE_LINE_SEP = "\n";
+    }
 
-
+    public static class Screen {
+        public static final int CARD_WIDTH_IN_PIXES = 600;
     }
 
 }

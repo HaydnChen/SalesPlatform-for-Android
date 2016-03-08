@@ -86,10 +86,10 @@ dependencies {
     compile "com.github.ksoichiro:android-observablescrollview:${rootProject.ext.observableScrollViewVersion}"
 
     testCompile "junit:junit:${rootProject.ext.junitVer}"
-    testCompile ("org.mockito:mockito-core:${rootProject.ext.mockitoVer}"){
+    testCompile("org.mockito:mockito-core:${rootProject.ext.mockitoVer}") {
         exclude group: 'org.objenesis'
     }
-    testCompile ("com.squareup:fest-android:${rootProject.ext.festVer}"){
+    testCompile("com.squareup:fest-android:${rootProject.ext.festVer}") {
         exclude group: 'com.android.support'
     }
     testCompile("org.robolectric:robolectric:${rootProject.ext.robolectricVer}") {
@@ -100,4 +100,5 @@ dependencies {
     testCompile 'com.squareup.okhttp:mockwebserver:2.3.0'
     testCompile 'org.powermock:powermock-module-junit4-rule-agent:1.6.2'
 
+    compile 'com.android.support:support-v4:23.2.0'
 }
