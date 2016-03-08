@@ -1,7 +1,11 @@
 package com.ebaotech.salesplatform.ui;
 
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
@@ -17,7 +21,10 @@ import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_home)
 @OptionsMenu(R.menu.menu_section)
-public class HomeActivity extends CleanActivity implements HomeView, CustomerItemListFragment.OnListFragmentInteractionListener {
+public class HomeActivity extends CleanActivity
+        implements HomeView,
+        CustomerItemListFragment.OnListFragmentInteractionListener,
+        NavigationView.OnNavigationItemSelectedListener {
 
     @ViewById(R.id.my_view_pager)
     ViewPager viewPager;
@@ -35,6 +42,19 @@ public class HomeActivity extends CleanActivity implements HomeView, CustomerIte
         //setup tab bar ("CustomerBo|FNA|QNI|...")
         setupTabBar();
 
+
+        setupNav();
+    }
+
+    private void setupNav() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.all_activity__drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
 
@@ -92,5 +112,22 @@ public class HomeActivity extends CleanActivity implements HomeView, CustomerIte
     @Override
     public void onListFragmentInteraction(Customer item) {
         // TODO: 3/3/16 1:01 AM
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_home) {
+            // Handle the camera action
+        } else if (id == R.id.nav_manage) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.all_activity__drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

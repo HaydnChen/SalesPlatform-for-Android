@@ -1,7 +1,6 @@
 package com.ebaotech.salesplatform.ui;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.ebaotech.salesplatform.R;
+import com.ebaotech.salesplatform.commons.util.DensityUtil;
 import com.ebaotech.salesplatform.domain.Customer;
 import com.ebaotech.salesplatform.mvp.presenter.CustomerListPresenter;
 import com.ebaotech.salesplatform.mvp.view.CustomerListView;
@@ -59,25 +59,24 @@ public class CustomerItemListFragment extends Fragment implements CustomerListVi
 
     /**
      * return a new instance
-     * @param columnCount
      * @return
      */
-    public static CustomerItemListFragment newInstance(int columnCount) {
+    public static CustomerItemListFragment newInstance() {
         CustomerItemListFragment fragment = new CustomerItemListFragment_();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @AfterViews
     void onAfterViews() {
         //setup customer fragment
-        setupCustomerCardView(3);
+
+        setupCustomerCardView();
     }
 
-    private void setupCustomerCardView(int columnCount) {
-        this.columnCount = columnCount;
+    private void setupCustomerCardView() {
+        int deviceWidthInpixes = DensityUtil.getDeviceWidthInPixes(this.getContext());
+        //contact card width is around 800
+        this.columnCount = deviceWidthInpixes / 800;
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
