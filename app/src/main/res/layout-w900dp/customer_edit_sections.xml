@@ -19,7 +19,7 @@
 
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/customerlist_list"
+        android:id="@+id/customer_edit_sections"
         android:name="com.ebaotech.salesplatform.ui.customer.CustomerListListFragment"
         android:layout_width="@dimen/item_width"
         android:layout_height="match_parent"
@@ -27,10 +27,10 @@
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
         tools:context=".ui.customer.CustomerEditListActivity"
-        tools:listitem="@layout/customerlist_list_content" />
+        tools:listitem="@layout/customer_edit_sections_content" />
 
     <FrameLayout
-        android:id="@+id/customerlist_detail_container"
+        android:id="@+id/customer_edit_detail_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3" />

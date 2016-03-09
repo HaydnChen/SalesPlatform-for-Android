@@ -38,7 +38,7 @@ public class CustomerEditListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customerlist_list);
+        setContentView(R.layout.activity_customer_edit_sections);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,11 +53,11 @@ public class CustomerEditListActivity extends AppCompatActivity {
             }
         });
 
-        View recyclerView = findViewById(R.id.customerlist_list);
+        View recyclerView = findViewById(R.id.customer_edit_sections);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
 
-        if (findViewById(R.id.customerlist_detail_container) != null) {
+        if (findViewById(R.id.customer_edit_detail_container) != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-w900dp).
             // If this view is present, then the
@@ -82,7 +82,7 @@ public class CustomerEditListActivity extends AppCompatActivity {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.customerlist_list_content, parent, false);
+                    .inflate(R.layout.customer_edit_sections_content, parent, false);
             return new ViewHolder(view);
         }
 
@@ -101,7 +101,7 @@ public class CustomerEditListActivity extends AppCompatActivity {
                         CustomerEditDetailFragment fragment = new CustomerEditDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.customerlist_detail_container, fragment)
+                                .replace(R.id.customer_edit_detail_container, fragment)
                                 .commit();
                     } else {
                         Context context = v.getContext();

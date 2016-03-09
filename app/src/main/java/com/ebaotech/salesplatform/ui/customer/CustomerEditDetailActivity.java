@@ -24,7 +24,7 @@ public class CustomerEditDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customerlist_detail);
+        setContentView(R.layout.activity_customer_edit_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
@@ -61,7 +61,7 @@ public class CustomerEditDetailActivity extends AppCompatActivity {
             CustomerEditDetailFragment fragment = new CustomerEditDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.customerlist_detail_container, fragment)
+                    .add(R.id.customer_edit_detail_container, fragment)
                     .commit();
         }
     }

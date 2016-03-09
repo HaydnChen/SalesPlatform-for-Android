@@ -58,11 +58,11 @@ public class CustomerEditDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.customerlist_detail, container, false);
+        View rootView = inflater.inflate(R.layout.customer_edit_detail, container, false);
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.customerlist_detail)).setText(mItem.details);
+            ((TextView) rootView.findViewById(R.id.customer_edit_detail)).setText(mItem.details);
         }
 
         return rootView;
