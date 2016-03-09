@@ -43,7 +43,7 @@ public class DummyContent {
     }
 
     private static Customer createDummyItem(int position) {
-        return new Customer(String.valueOf(position), names[position], (6 + (int)(Math.random() * 45)), "Male", makeDetails(position));
+        return new Customer(String.valueOf(position), names[position], (6 + (int) (Math.random() * 45)), "Male", makeDetails(position));
     }
 
     private static String makeDetails(int position) {

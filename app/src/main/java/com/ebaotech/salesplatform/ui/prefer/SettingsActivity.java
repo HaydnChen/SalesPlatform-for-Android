@@ -1,4 +1,4 @@
-package com.ebaotech.salesplatform.ui;
+package com.ebaotech.salesplatform.ui.prefer;
 
 
 import android.annotation.TargetApi;
@@ -126,7 +126,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         super.onCreate(savedInstanceState);
         setupActionBar();
     }
-
 
 
     /**

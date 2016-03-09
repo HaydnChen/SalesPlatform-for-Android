@@ -1,20 +1,16 @@
 package com.ebaotech.salesplatform.interactor.customer;
 
-import android.content.Context;
 import com.ebaotech.salesplatform.core.bo.CustomerBo;
 import com.ebaotech.salesplatform.core.dao.CustomerDao;
 import com.ebaotech.salesplatform.domain.Customer;
-import com.ebaotech.salesplatform.exception.GetCustomersException;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
-import org.androidannotations.annotations.RootContext;
 import org.androidannotations.annotations.UiThread;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import hugo.weaving.DebugLog;
@@ -26,10 +22,9 @@ import hugo.weaving.DebugLog;
 @EBean
 public class GetCustomersImpl implements GetCustomers {
 
-    private Callback callback;
-
     @Bean
     protected CustomerDao customerDao;
+    private Callback callback;
 
     @AfterInject
     void init() {
@@ -59,12 +54,14 @@ public class GetCustomersImpl implements GetCustomers {
         onItemsLoaded(customerList);
     }
 
-    @Override public Customer convertToDomain(CustomerBo customerBo) {
-        Customer customer = new Customer(customerBo.getId().toString(),customerBo.getName(),customerBo.getAge(),customerBo.getGender(),customerBo.getDetails());
+    @Override
+    public Customer convertToDomain(CustomerBo customerBo) {
+        Customer customer = new Customer(customerBo.getId().toString(), customerBo.getName(), customerBo.getAge(), customerBo.getGender(), customerBo.getDetails());
         return customer;
     }
 
-    @Override public List<Customer> convertToDomain(List<CustomerBo> customerBoList) {
+    @Override
+    public List<Customer> convertToDomain(List<CustomerBo> customerBoList) {
         List<Customer> customerList = new ArrayList<Customer>();
         for (CustomerBo bo : customerBoList) {
             customerList.add(convertToDomain(bo));

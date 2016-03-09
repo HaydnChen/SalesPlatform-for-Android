@@ -12,12 +12,13 @@ import java.util.List;
 public interface GetCustomers {
     void getCustomers(Callback callback);
 
-    interface Callback {
-        void onCustomersLoaded(List<Customer> customerList);
-        void onError(Exception e);
-    }
-
     Customer convertToDomain(CustomerBo customerBo);
 
     List<Customer> convertToDomain(List<CustomerBo> customerBoList);
+
+    interface Callback {
+        void onCustomersLoaded(List<Customer> customerList);
+
+        void onError(Exception e);
+    }
 }

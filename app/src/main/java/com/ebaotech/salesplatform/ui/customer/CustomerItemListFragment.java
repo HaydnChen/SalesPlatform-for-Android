@@ -13,9 +13,9 @@ import com.ebaotech.salesplatform.mvp.presenter.CustomerListPresenter;
 import com.ebaotech.salesplatform.mvp.view.CustomerListView;
 import com.ebaotech.salesplatform.mvp.view.model.customer.CustomerListModelAdapter;
 import com.ebaotech.salesplatform.mvp.view.model.customer.CustomerListViewModel;
-
 import com.ebaotech.salesplatform.ui.AbstractActivity;
 import com.ebaotech.salesplatform.ui.AbstractFragment;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
@@ -37,17 +37,17 @@ public class CustomerItemListFragment extends AbstractFragment implements Custom
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
-    private int columnCount;
-    @ViewById(R.id.customer_list) View view;
-
+    @ViewById(R.id.customer_list)
+    View view;
     @Bean
     CustomerListPresenter customerListPresenter;
-
+    // TODO: Customize parameters
+    private int columnCount;
     private CustomerListModelAdapter customerListModelAdapter;
 
     /**
      * return a new instance
+     *
      * @return CustomerItemListFragment
      */
     public static CustomerItemListFragment newInstance(AbstractActivity containerActivity) {

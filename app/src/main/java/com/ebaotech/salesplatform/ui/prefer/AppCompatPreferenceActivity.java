@@ -1,4 +1,4 @@
-package com.ebaotech.salesplatform.ui;
+package com.ebaotech.salesplatform.ui.prefer;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

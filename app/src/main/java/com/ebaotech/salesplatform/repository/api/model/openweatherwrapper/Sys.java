@@ -1,4 +1,3 @@
-
 package com.ebaotech.salesplatform.repository.api.model.openweatherwrapper;
 
 
@@ -11,18 +10,14 @@ public class Sys {
     private String country;
 
     /**
-     * 
-     * @return
-     *     The country
+     * @return The country
      */
     public String getCountry() {
         return country;
     }
 
     /**
-     * 
-     * @param country
-     *     The country
+     * @param country The country
      */
     public void setCountry(String country) {
         this.country = country;
