@@ -1,4 +1,4 @@
-package com.ebaotech.salesplatform.ui;
+package com.ebaotech.salesplatform.ui.prefer;
 
 
 import android.annotation.TargetApi;

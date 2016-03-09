@@ -11,7 +11,7 @@ public class Sys {
     private String country;
 
     /**
-     * 
+     *
      * @return
      *     The country
      */
@@ -20,7 +20,7 @@ public class Sys {
     }
 
     /**
-     * 
+     *
      * @param country
      *     The country
      */

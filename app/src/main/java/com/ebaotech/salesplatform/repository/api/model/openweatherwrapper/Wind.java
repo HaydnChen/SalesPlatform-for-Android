@@ -13,7 +13,7 @@ public class Wind {
     private Double deg;
 
     /**
-     * 
+     *
      * @return
      *     The speed
      */
@@ -22,7 +22,7 @@ public class Wind {
     }
 
     /**
-     * 
+     *
      * @param speed
      *     The speed
      */
@@ -31,7 +31,7 @@ public class Wind {
     }
 
     /**
-     * 
+     *
      * @return
      *     The deg
      */
@@ -40,7 +40,7 @@ public class Wind {
     }
 
     /**
-     * 
+     *
      * @param deg
      *     The deg
      */

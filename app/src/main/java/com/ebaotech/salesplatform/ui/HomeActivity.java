@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.ebaotech.salesplatform.R;
 import com.ebaotech.salesplatform.mvp.view.HomeView;
+import com.ebaotech.salesplatform.ui.prefer.SettingsActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -47,7 +48,7 @@ public class HomeActivity extends AbstractActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.all_activity__drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -97,7 +98,6 @@ public class HomeActivity extends AbstractActivity
             // Handle the camera action
         } else if (id == R.id.nav_manage) {
             startActivity(new Intent(this, SettingsActivity_.class));
-            return true;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.all_activity__drawer_layout);

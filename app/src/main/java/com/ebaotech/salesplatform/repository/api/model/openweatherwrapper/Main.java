@@ -27,7 +27,7 @@ public class Main {
     private Integer humidity;
 
     /**
-     * 
+     *
      * @return
      *     The temp
      */
@@ -36,7 +36,7 @@ public class Main {
     }
 
     /**
-     * 
+     *
      * @param temp
      *     The temp
      */
@@ -45,7 +45,7 @@ public class Main {
     }
 
     /**
-     * 
+     *
      * @return
      *     The tempMin
      */
@@ -54,7 +54,7 @@ public class Main {
     }
 
     /**
-     * 
+     *
      * @param tempMin
      *     The temp_min
      */
@@ -63,7 +63,7 @@ public class Main {
     }
 
     /**
-     * 
+     *
      * @return
      *     The tempMax
      */
@@ -72,7 +72,7 @@ public class Main {
     }
 
     /**
-     * 
+     *
      * @param tempMax
      *     The temp_max
      */
@@ -81,7 +81,7 @@ public class Main {
     }
 
     /**
-     * 
+     *
      * @return
      *     The pressure
      */
@@ -90,7 +90,7 @@ public class Main {
     }
 
     /**
-     * 
+     *
      * @param pressure
      *     The pressure
      */
@@ -99,7 +99,7 @@ public class Main {
     }
 
     /**
-     * 
+     *
      * @return
      *     The seaLevel
      */
@@ -108,7 +108,7 @@ public class Main {
     }
 
     /**
-     * 
+     *
      * @param seaLevel
      *     The sea_level
      */
@@ -117,7 +117,7 @@ public class Main {
     }
 
     /**
-     * 
+     *
      * @return
      *     The grndLevel
      */
@@ -126,7 +126,7 @@ public class Main {
     }
 
     /**
-     * 
+     *
      * @param grndLevel
      *     The grnd_level
      */
@@ -135,7 +135,7 @@ public class Main {
     }
 
     /**
-     * 
+     *
      * @return
      *     The humidity
      */
@@ -144,7 +144,7 @@ public class Main {
     }
 
     /**
-     * 
+     *
      * @param humidity
      *     The humidity
      */
