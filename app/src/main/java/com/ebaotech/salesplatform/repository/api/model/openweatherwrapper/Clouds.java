@@ -11,7 +11,7 @@ public class Clouds {
     private Integer all;
 
     /**
-     * 
+     *
      * @return
      *     The all
      */
@@ -20,7 +20,7 @@ public class Clouds {
     }
 
     /**
-     * 
+     *
      * @param all
      *     The all
      */

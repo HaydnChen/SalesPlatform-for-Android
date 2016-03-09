@@ -12,7 +12,7 @@ public class Coord {
     private Double lat;
 
     /**
-     * 
+     *
      * @return
      *     The lon
      */
@@ -21,7 +21,7 @@ public class Coord {
     }
 
     /**
-     * 
+     *
      * @param lon
      *     The lon
      */
@@ -30,7 +30,7 @@ public class Coord {
     }
 
     /**
-     * 
+     *
      * @return
      *     The lat
      */
@@ -39,7 +39,7 @@ public class Coord {
     }
 
     /**
-     * 
+     *
      * @param lat
      *     The lat
      */

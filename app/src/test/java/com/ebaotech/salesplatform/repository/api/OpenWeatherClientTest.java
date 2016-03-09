@@ -1,9 +1,7 @@
 package com.ebaotech.salesplatform.repository.api;
 
 import com.ebaotech.salesplatform.app.AppConfig;
-import com.ebaotech.salesplatform.domain.City;
 import com.ebaotech.salesplatform.exception.GetCitiesException;
-import com.ebaotech.salesplatform.repository.api.OpenWeatherClient;
 import com.ebaotech.salesplatform.util.AppRobolectricRunner;
 import com.ebaotech.salesplatform.commons.test.TestHelper;
 import com.squareup.okhttp.mockwebserver.MockResponse;

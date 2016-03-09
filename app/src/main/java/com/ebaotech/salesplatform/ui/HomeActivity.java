@@ -1,14 +1,18 @@
 package com.ebaotech.salesplatform.ui;
 
+import android.content.Intent;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.ebaotech.salesplatform.R;
-import com.ebaotech.salesplatform.app.CleanActivity;
-import com.ebaotech.salesplatform.domain.Customer;
 import com.ebaotech.salesplatform.mvp.view.HomeView;
+import com.ebaotech.salesplatform.ui.prefer.SettingsActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -17,7 +21,8 @@ import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_home)
 @OptionsMenu(R.menu.menu_section)
-public class HomeActivity extends CleanActivity implements HomeView, CustomerItemListFragment.OnListFragmentInteractionListener {
+public class HomeActivity extends AbstractActivity
+        implements HomeView, NavigationView.OnNavigationItemSelectedListener {
 
     @ViewById(R.id.my_view_pager)
     ViewPager viewPager;
@@ -32,14 +37,27 @@ public class HomeActivity extends CleanActivity implements HomeView, CustomerIte
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //setup tab bar ("Customer|FNA|QNI|...")
+        //setup tab bar ("CustomerBo|FNA|QNI|...")
         setupTabBar();
 
+
+        setupNav();
+    }
+
+    private void setupNav() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.all_activity__drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
 
     private void setupTabBar() {
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), this.getApplicationContext());
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this);
 
         // Set up the ViewPager with the sections adapter.
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -62,35 +80,28 @@ public class HomeActivity extends CleanActivity implements HomeView, CustomerIte
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            //startActivity(new Intent(this, SettingsActivity_.class));
+            SettingsActivity_.intent(this).start();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public void showLoading(String message) {
-        progress.showLoading(this, message);
-    }
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
 
-    @Override
-    public void hideLoading(boolean sucess) {
-        progress.endLoading(sucess);
-    }
+        if (id == R.id.nav_home) {
+            // Handle the camera action
+        } else if (id == R.id.nav_manage) {
+            startActivity(new Intent(this, SettingsActivity_.class));
+        }
 
-    @Override
-    public void showActionLabel(String message) {
-        cleanErrorHandler.showSnackBar(message);
-    }
-
-    @Override
-    public void hideActionLabel() {
-
-    }
-
-    @Override
-    public void onListFragmentInteraction(Customer item) {
-        // TODO: 3/3/16 1:01 AM
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.all_activity__drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

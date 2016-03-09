@@ -20,7 +20,7 @@ public class OpenWeatherWrapper {
     private java.util.List<WeatherItem> list = new ArrayList<WeatherItem>();
 
     /**
-     * 
+     *
      * @return
      *     The message
      */
@@ -29,7 +29,7 @@ public class OpenWeatherWrapper {
     }
 
     /**
-     * 
+     *
      * @param message
      *     The message
      */
@@ -38,7 +38,7 @@ public class OpenWeatherWrapper {
     }
 
     /**
-     * 
+     *
      * @return
      *     The cod
      */
@@ -47,7 +47,7 @@ public class OpenWeatherWrapper {
     }
 
     /**
-     * 
+     *
      * @param cod
      *     The cod
      */
@@ -56,7 +56,7 @@ public class OpenWeatherWrapper {
     }
 
     /**
-     * 
+     *
      * @return
      *     The count
      */
@@ -65,7 +65,7 @@ public class OpenWeatherWrapper {
     }
 
     /**
-     * 
+     *
      * @param count
      *     The count
      */
@@ -74,7 +74,7 @@ public class OpenWeatherWrapper {
     }
 
     /**
-     * 
+     *
      * @return
      *     The list
      */
@@ -83,7 +83,7 @@ public class OpenWeatherWrapper {
     }
 
     /**
-     * 
+     *
      * @param list
      *     The list
      */

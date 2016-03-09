@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ebaotech.salesplatform.R;
+import com.ebaotech.salesplatform.commons.util.TextUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
         holder.ageView.setText(model.getAge()+" years old");
         holder.nameView.setText(model.getName());
         holder.genderView.setText(model.getGender());
-        holder.detailView.setText(model.getDetails());
+        holder.detailView.setText(TextUtil.truncateIfLengthMoreThan(80,model.getDetails()));
         holder.photoImage.setImageResource(R.drawable.ic_action_user);
     }
 
@@ -69,7 +70,7 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
     }
 
     /**
-     * ViewHolder for Customer List (Home page)
+     * ViewHolder for CustomerBo List (Home page)
      */
     public class CustomerListViewHolder extends RecyclerView.ViewHolder {
         View view;

@@ -16,7 +16,7 @@ public class Weather {
     private String icon;
 
     /**
-     * 
+     *
      * @return
      *     The id
      */
@@ -25,7 +25,7 @@ public class Weather {
     }
 
     /**
-     * 
+     *
      * @param id
      *     The id
      */
@@ -34,7 +34,7 @@ public class Weather {
     }
 
     /**
-     * 
+     *
      * @return
      *     The main
      */
@@ -43,7 +43,7 @@ public class Weather {
     }
 
     /**
-     * 
+     *
      * @param main
      *     The main
      */
@@ -52,7 +52,7 @@ public class Weather {
     }
 
     /**
-     * 
+     *
      * @return
      *     The description
      */
@@ -61,7 +61,7 @@ public class Weather {
     }
 
     /**
-     * 
+     *
      * @param description
      *     The description
      */
@@ -70,7 +70,7 @@ public class Weather {
     }
 
     /**
-     * 
+     *
      * @return
      *     The icon
      */
@@ -79,7 +79,7 @@ public class Weather {
     }
 
     /**
-     * 
+     *
      * @param icon
      *     The icon
      */

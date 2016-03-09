@@ -28,7 +28,7 @@ public class WeatherItem {
     private java.util.List<Weather> weather = new ArrayList<Weather>();
 
     /**
-     * 
+     *
      * @return
      *     The id
      */
@@ -37,7 +37,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @param id
      *     The id
      */
@@ -46,7 +46,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @return
      *     The name
      */
@@ -55,7 +55,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @param name
      *     The name
      */
@@ -64,7 +64,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @return
      *     The coord
      */
@@ -73,7 +73,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @param coord
      *     The coord
      */
@@ -82,7 +82,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @return
      *     The main
      */
@@ -91,7 +91,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @param main
      *     The main
      */
@@ -100,7 +100,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @return
      *     The dt
      */
@@ -109,7 +109,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @param dt
      *     The dt
      */
@@ -118,7 +118,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @return
      *     The wind
      */
@@ -127,7 +127,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @param wind
      *     The wind
      */
@@ -136,7 +136,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @return
      *     The sys
      */
@@ -145,7 +145,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @param sys
      *     The sys
      */
@@ -154,7 +154,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @return
      *     The clouds
      */
@@ -163,7 +163,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @param clouds
      *     The clouds
      */
@@ -172,7 +172,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @return
      *     The weather
      */
@@ -181,7 +181,7 @@ public class WeatherItem {
     }
 
     /**
-     * 
+     *
      * @param weather
      *     The weather
      */
