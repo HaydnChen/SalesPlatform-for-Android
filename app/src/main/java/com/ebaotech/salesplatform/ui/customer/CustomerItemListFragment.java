@@ -63,9 +63,9 @@ public class CustomerItemListFragment extends AbstractFragment implements Custom
     }
 
     private void setupCustomerCardView() {
-        int deviceWidthInpixes = DensityUtil.getDeviceWidthInPixes(this.getContext());
+        int deviceWidthInPixes = DensityUtil.getDeviceWidthInPixes(this.getContext());
         //contact card width is around 600
-        int columnCount = deviceWidthInpixes / Constants.Screen.CARD_WIDTH_IN_PIXES;
+        int columnCount = deviceWidthInPixes / Constants.Screen.CARD_WIDTH_IN_PIXES;
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -82,8 +82,6 @@ public class CustomerItemListFragment extends AbstractFragment implements Custom
     @Override
     public void onResume() {
         super.onResume();
-        //setup customer fragment
-//        setupCustomerCardView(3);
     }
 
     @Override

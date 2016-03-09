@@ -1,6 +1,11 @@
 package com.ebaotech.salesplatform.mvp.view.model.customer;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +14,7 @@ import android.widget.TextView;
 
 import com.ebaotech.salesplatform.R;
 import com.ebaotech.salesplatform.commons.util.TextUtil;
+import com.ebaotech.salesplatform.ui.customer.CustomerEditListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +25,7 @@ import java.util.List;
  */
 public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListModelAdapter.CustomerListViewHolder> {
 
+    private static final String TAG = "CustomerListModelAdapter";
     private List<CustomerListViewModel> viewModels;
 
     public CustomerListModelAdapter(List<CustomerListViewModel> viewModels) {
@@ -37,14 +44,35 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
         );
     }
 
+
     @Override
     public void onBindViewHolder(CustomerListViewHolder holder, int position) {
         CustomerListViewModel model = viewModels.get(position);
-        holder.ageView.setText(model.getAge()+" years old");
+        holder.ageView.setText(model.getAge() + " years old");
         holder.nameView.setText(model.getName());
         holder.genderView.setText(model.getGender());
-        holder.detailView.setText(TextUtil.truncateIfLengthMoreThan(80,model.getDetails()));
+        holder.detailView.setText(TextUtil.truncateIfLengthMoreThan(80, model.getDetails()));
         holder.photoImage.setImageResource(R.drawable.ic_action_user);
+
+        holder.customerCardView.setTag(position);
+        holder.customerCardView.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * Called when a view has been clicked.
+             *
+             * @param v The view that was clicked.
+             */
+            @SuppressLint("LongLogTag")
+            @Override
+            public void onClick(View v) {
+                int position = (Integer) v.getTag();
+                Log.d(TAG, "Element " + position + " clicked.");
+                Context context = v.getContext();
+                Intent intent = new Intent(context, CustomerEditListActivity.class);
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override
@@ -69,11 +97,11 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
         return viewModels.get(position);
     }
 
+
     /**
      * ViewHolder for CustomerBo List (Home page)
      */
     public class CustomerListViewHolder extends RecyclerView.ViewHolder {
-        View view;
 
         TextView ageView;
         TextView nameView;
@@ -81,17 +109,22 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
         TextView detailView;
         ImageView photoImage;
 
+        private CardView customerCardView;
+
+
         public CustomerListViewHolder(View itemView) {
             super(itemView);
-            this.view = itemView;
+            //this.itemView = itemView;
+
+            customerCardView = (CardView) itemView;
 
             // TODO: 3/2/16 3:49 PM add View Items
 
-            ageView = (TextView) view.findViewById(R.id.customer_age);
-            nameView = (TextView) view.findViewById(R.id.customer_name);
-            genderView = (TextView) view.findViewById(R.id.customer_gender);
-            detailView = (TextView) view.findViewById(R.id.customer_detail);
-            photoImage = (ImageView) view.findViewById(R.id.customer_photo);
+            ageView = (TextView) itemView.findViewById(R.id.customer_age);
+            nameView = (TextView) itemView.findViewById(R.id.customer_name);
+            genderView = (TextView) itemView.findViewById(R.id.customer_gender);
+            detailView = (TextView) itemView.findViewById(R.id.customer_detail);
+            photoImage = (ImageView) itemView.findViewById(R.id.customer_photo);
 
         }
     }
