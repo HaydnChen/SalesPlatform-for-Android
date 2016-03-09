@@ -1,3 +1,4 @@
+
 package com.ebaotech.salesplatform.repository.api.model.openweatherwrapper;
 
 import com.google.gson.annotations.Expose;
@@ -19,56 +20,72 @@ public class OpenWeatherWrapper {
     private java.util.List<WeatherItem> list = new ArrayList<WeatherItem>();
 
     /**
-     * @return The message
+     *
+     * @return
+     *     The message
      */
     public String getMessage() {
         return message;
     }
 
     /**
-     * @param message The message
+     *
+     * @param message
+     *     The message
      */
     public void setMessage(String message) {
         this.message = message;
     }
 
     /**
-     * @return The cod
+     *
+     * @return
+     *     The cod
      */
     public String getCod() {
         return cod;
     }
 
     /**
-     * @param cod The cod
+     *
+     * @param cod
+     *     The cod
      */
     public void setCod(String cod) {
         this.cod = cod;
     }
 
     /**
-     * @return The count
+     *
+     * @return
+     *     The count
      */
     public Integer getCount() {
         return count;
     }
 
     /**
-     * @param count The count
+     *
+     * @param count
+     *     The count
      */
     public void setCount(Integer count) {
         this.count = count;
     }
 
     /**
-     * @return The list
+     *
+     * @return
+     *     The list
      */
     public java.util.List<WeatherItem> getList() {
         return list;
     }
 
     /**
-     * @param list The list
+     *
+     * @param list
+     *     The list
      */
     public void setList(java.util.List<WeatherItem> list) {
         this.list = list;

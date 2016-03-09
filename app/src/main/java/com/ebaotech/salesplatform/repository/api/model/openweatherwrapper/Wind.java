@@ -1,3 +1,4 @@
+
 package com.ebaotech.salesplatform.repository.api.model.openweatherwrapper;
 
 
@@ -12,28 +13,36 @@ public class Wind {
     private Double deg;
 
     /**
-     * @return The speed
+     *
+     * @return
+     *     The speed
      */
     public Double getSpeed() {
         return speed;
     }
 
     /**
-     * @param speed The speed
+     *
+     * @param speed
+     *     The speed
      */
     public void setSpeed(Double speed) {
         this.speed = speed;
     }
 
     /**
-     * @return The deg
+     *
+     * @return
+     *     The deg
      */
     public Double getDeg() {
         return deg;
     }
 
     /**
-     * @param deg The deg
+     *
+     * @param deg
+     *     The deg
      */
     public void setDeg(Double deg) {
         this.deg = deg;

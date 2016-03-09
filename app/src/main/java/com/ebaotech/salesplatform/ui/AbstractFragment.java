@@ -1,9 +1,7 @@
 package com.ebaotech.salesplatform.ui;
 
 import android.support.v4.app.Fragment;
-
 import com.ebaotech.salesplatform.core.mvp.View;
-
 import org.androidannotations.annotations.EFragment;
 
 /**
@@ -12,41 +10,37 @@ import org.androidannotations.annotations.EFragment;
 @EFragment
 public class AbstractFragment extends Fragment implements View {
 
-    protected AbstractActivity containerActivity;
+  protected AbstractActivity containerActivity;
 
-    public AbstractActivity getContainerActivity() {
-        return containerActivity;
-    }
+  public AbstractActivity getContainerActivity() {
+    return containerActivity;
+  }
 
-    public void setContainerActivity(AbstractActivity containerActivity) {
-        this.containerActivity = containerActivity;
-    }
+  public void setContainerActivity(AbstractActivity containerActivity) {
+    this.containerActivity = containerActivity;
+  }
 
-    @Override
-    public void showLoading(String message) {
-        if (containerActivity != null) {
-            this.containerActivity.showLoading(message);
-        }
+  @Override public void showLoading(String message) {
+    if (containerActivity !=null) {
+      this.containerActivity.showLoading(message);
     }
+  }
 
-    @Override
-    public void hideLoading(boolean sucess) {
-        if (containerActivity != null) {
-            this.containerActivity.hideLoading(sucess);
-        }
+  @Override public void hideLoading(boolean sucess) {
+    if (containerActivity !=null) {
+      this.containerActivity.hideLoading(sucess);
     }
+  }
 
-    @Override
-    public void showActionLabel(String message) {
-        if (containerActivity != null) {
-            this.containerActivity.showActionLabel(message);
-        }
+  @Override public void showActionLabel(String message) {
+    if (containerActivity !=null) {
+      this.containerActivity.showActionLabel(message);
     }
+  }
 
-    @Override
-    public void hideActionLabel() {
-        if (containerActivity != null) {
-            this.containerActivity.hideActionLabel();
-        }
+  @Override public void hideActionLabel() {
+    if (containerActivity !=null) {
+      this.containerActivity.hideActionLabel();
     }
+  }
 }

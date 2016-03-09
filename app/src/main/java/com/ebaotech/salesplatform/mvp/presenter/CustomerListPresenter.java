@@ -23,9 +23,10 @@ import java.util.List;
 @EBean(scope = EBean.Scope.Singleton)
 public class CustomerListPresenter extends BasePresenter implements Presenter {
 
+    private CustomerListView customerListView;
+
     @Bean(GetCustomersImpl.class)
     GetCustomers getCustomers;
-    private CustomerListView customerListView;
 
     @Override
     public void setView(View view) {

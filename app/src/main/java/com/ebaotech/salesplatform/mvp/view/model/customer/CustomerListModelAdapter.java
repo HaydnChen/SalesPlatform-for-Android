@@ -40,10 +40,10 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
     @Override
     public void onBindViewHolder(CustomerListViewHolder holder, int position) {
         CustomerListViewModel model = viewModels.get(position);
-        holder.ageView.setText(model.getAge() + " years old");
+        holder.ageView.setText(model.getAge()+" years old");
         holder.nameView.setText(model.getName());
         holder.genderView.setText(model.getGender());
-        holder.detailView.setText(TextUtil.truncateIfLengthMoreThan(80, model.getDetails()));
+        holder.detailView.setText(TextUtil.truncateIfLengthMoreThan(80,model.getDetails()));
         holder.photoImage.setImageResource(R.drawable.ic_action_user);
     }
 
