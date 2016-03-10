@@ -29,12 +29,12 @@
             android:name=".ui.prefer.SettingsActivity_"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name=".ui.customer.CustomerEditListActivity"
-            android:label="@string/title_customerlist_list"
+            android:name=".ui.customer.CustomerEditListActivity_"
+            android:label="@string/title_customer_edit_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".ui.customer.CustomerEditDetailActivity"
-            android:label="@string/title_customerlist_detail"
+            android:label="@string/title_customer_edit_detail"
             android:parentActivityName=".ui.customer.CustomerEditListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

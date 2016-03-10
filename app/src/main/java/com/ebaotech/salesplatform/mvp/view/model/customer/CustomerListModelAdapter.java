@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.ebaotech.salesplatform.R;
 import com.ebaotech.salesplatform.commons.util.TextUtil;
-import com.ebaotech.salesplatform.ui.customer.CustomerEditListActivity;
+import com.ebaotech.salesplatform.ui.customer.CustomerEditListActivity_;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,6 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
 
         holder.customerCardView.setTag(position);
         holder.customerCardView.setOnClickListener(new View.OnClickListener() {
-
             /**
              * Called when a view has been clicked.
              *
@@ -68,9 +67,8 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
                 int position = (Integer) v.getTag();
                 Log.d(TAG, "Element " + position + " clicked.");
                 Context context = v.getContext();
-                Intent intent = new Intent(context, CustomerEditListActivity.class);
+                Intent intent = new Intent(context, CustomerEditListActivity_.class);
                 context.startActivity(intent);
-
             }
         });
     }
@@ -119,7 +117,6 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
             customerCardView = (CardView) itemView;
 
             // TODO: 3/2/16 3:49 PM add View Items
-
             ageView = (TextView) itemView.findViewById(R.id.customer_age);
             nameView = (TextView) itemView.findViewById(R.id.customer_name);
             genderView = (TextView) itemView.findViewById(R.id.customer_gender);

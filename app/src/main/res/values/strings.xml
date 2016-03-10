@@ -76,6 +76,8 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
-    <string name="title_customerlist_list">CustomerDetail</string>
-    <string name="title_customerlist_detail">CustomerList Detail</string>
+
+    <!-- customer information editing-->
+    <string name="title_customer_edit_list">Customer Detail</string>
+    <string name="title_customer_edit_detail">CustomerList Detail</string>
 </resources>
