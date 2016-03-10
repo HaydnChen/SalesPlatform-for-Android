@@ -16,7 +16,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     protected AbstractActivity containerActivity;
     Resources res;
     private String titles[];
-    private Fragment frags[];
 
     public SectionsPagerAdapter(AbstractActivity containerActivity) {
         super(containerActivity.getSupportFragmentManager());
@@ -42,7 +41,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return titles.length;
     }
 
 
