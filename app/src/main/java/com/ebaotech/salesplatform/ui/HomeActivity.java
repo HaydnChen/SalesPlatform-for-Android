@@ -20,17 +20,13 @@ import android.view.animation.ScaleAnimation;
 
 import com.ebaotech.salesplatform.R;
 import com.ebaotech.salesplatform.mvp.view.HomeView;
+import com.ebaotech.salesplatform.ui.home.TabSectionContent;
 import com.ebaotech.salesplatform.ui.prefer.SettingsActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @EActivity(R.layout.activity_home)
 @OptionsMenu(R.menu.menu_section)
@@ -160,11 +156,11 @@ public class HomeActivity extends AbstractActivity
                 // Change FAB color and icon
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    fab.setBackgroundTintList(getResources().getColorStateList(TabSection.ITEM_MAP.get(position).fabColor, getApplicationContext().getTheme()));
-                    fab.setImageDrawable(getResources().getDrawable(TabSection.ITEM_MAP.get(position).fabIcon, getApplicationContext().getTheme()));
+                    fab.setBackgroundTintList(getResources().getColorStateList(TabSectionContent.ITEM_MAP.get(position).fabColor, getApplicationContext().getTheme()));
+                    fab.setImageDrawable(getResources().getDrawable(TabSectionContent.ITEM_MAP.get(position).fabIcon, getApplicationContext().getTheme()));
                 } else {
-                    fab.setBackgroundTintList(getResources().getColorStateList(TabSection.ITEM_MAP.get(position).fabColor));
-                    fab.setImageDrawable(getResources().getDrawable(TabSection.ITEM_MAP.get(position).fabIcon));
+                    fab.setBackgroundTintList(getResources().getColorStateList(TabSectionContent.ITEM_MAP.get(position).fabColor));
+                    fab.setImageDrawable(getResources().getDrawable(TabSectionContent.ITEM_MAP.get(position).fabIcon));
                 }
 
                 // Scale up animation
@@ -182,45 +178,4 @@ public class HomeActivity extends AbstractActivity
         fab.startAnimation(shrink);
     }
 
-
-    public static class TabSection {
-
-        public static final List<TabSection> ITEMS = new ArrayList<TabSection>();
-        public static final Map<Integer, TabSection> ITEM_MAP = new HashMap<>();
-
-        //int sectionLables = R.array.section_labels;
-
-        static {
-            addItem(new TabSection(0, "hard code: Home", R.drawable.ic_action_home, R.color.colorAccent, R.drawable.ic_action_add));
-            addItem(new TabSection(1, "hard code: Customer", R.drawable.ic_action_user, R.color.colorPrimaryDark, R.drawable.ic_action_add));
-            addItem(new TabSection(2, "hard code: FNA", R.drawable.ic_action_line_chart, R.color.color_error, R.drawable.ic_action_add));
-            addItem(new TabSection(3, "hard code: Quotation", R.drawable.ic_action_calculator, R.color.color_success, R.drawable.ic_action_add));
-            addItem(new TabSection(4, "hard code: Policy", R.drawable.ic_action_folder_open, R.color.colorAccent, R.drawable.ic_action_add));
-        }
-
-
-        private static void addItem(TabSection item) {
-            ITEMS.add(item);
-            ITEM_MAP.put(item.position, item);
-        }
-
-        public final int position;
-        public final String tabName;
-        public final int tabIcon;
-        public final int fabColor;
-        public final int fabIcon;
-
-        private TabSection(int position, String tabName, int tabIcon, int fabColor, int fabIcon) {
-            this.position = position;
-            this.tabName = tabName;
-            this.tabIcon = tabIcon;
-            this.fabColor = fabColor;
-            this.fabIcon = fabIcon;
-        }
-
-        @Override
-        public String toString() {
-            return tabName;
-        }
-    }
 }
