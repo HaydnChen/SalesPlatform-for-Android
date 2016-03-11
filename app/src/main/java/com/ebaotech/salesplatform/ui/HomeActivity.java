@@ -57,9 +57,21 @@ public class HomeActivity extends AbstractActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Snackbar.make(view, "Replace with your own action: position" + tabLayout.getSelectedTabPosition(), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                int position = tabLayout.getSelectedTabPosition();
+                switch (position) {
+                    case 1:  //customer
+                        Snackbar.make(view, "add customer: position " + tabLayout.getSelectedTabPosition(), Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        break;
+                    case 3: // quotation
+                        Snackbar.make(view, "add quotation: position " + tabLayout.getSelectedTabPosition(), Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        break;
+                    default:
+                        Snackbar.make(view, "Replace with your own action: position " + tabLayout.getSelectedTabPosition(), Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        break;
+                }
             }
         });
     }
@@ -92,10 +104,12 @@ public class HomeActivity extends AbstractActivity
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
+
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
     }
