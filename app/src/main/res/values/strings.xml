@@ -80,4 +80,6 @@
     <!-- customer information editing-->
     <string name="title_customer_edit_list">Customer Detail</string>
     <string name="title_customer_edit_detail">CustomerList Detail</string>
+    <string name="title_quotation_edit_list">Quotation Edit</string>
+    <string name="title_quotation_edit_detail">Quotation Edit Detail</string>
 </resources>
