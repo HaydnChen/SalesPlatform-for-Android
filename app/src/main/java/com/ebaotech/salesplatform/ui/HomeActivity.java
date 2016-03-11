@@ -27,6 +27,11 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @EActivity(R.layout.activity_home)
 @OptionsMenu(R.menu.menu_section)
 public class HomeActivity extends AbstractActivity
@@ -81,12 +86,6 @@ public class HomeActivity extends AbstractActivity
         // Set up the ViewPager with the sections adapter.
         viewPager.setAdapter(sectionsPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
-//
-//        tabLayout.getTabAt(0).setIcon(R.drawable.ic_action_home);
-//        tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_user);
-//        tabLayout.getTabAt(2).setIcon(R.drawable.ic_action_line_chart);
-//        tabLayout.getTabAt(3).setIcon(R.drawable.ic_action_calculator);
-//        tabLayout.getTabAt(4).setIcon(R.drawable.ic_action_folder_open);
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -105,47 +104,6 @@ public class HomeActivity extends AbstractActivity
         });
     }
 
-    int[] colorIntArray = {R.color.colorAccent,R.color.colorPrimaryDark,R.color.color_error,R.color.color_success,R.color.colorAccent};
-    int[] iconIntArray = {R.drawable.ic_action_add,R.drawable.ic_action_add,R.drawable.ic_action_add,R.drawable.ic_action_add,R.drawable.ic_action_add};
-
-    protected void animateFab(final int position) {
-        fab.clearAnimation();
-        // Scale down animation
-        ScaleAnimation shrink =  new ScaleAnimation(1f, 0.2f, 1f, 0.2f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        shrink.setDuration(250);     // animation duration in milliseconds
-        shrink.setInterpolator(new DecelerateInterpolator());
-        shrink.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                // Change FAB color and icon
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    fab.setBackgroundTintList(getResources().getColorStateList(colorIntArray[position], getApplicationContext().getTheme()));
-                    fab.setImageDrawable(getResources().getDrawable(iconIntArray[position], getApplicationContext().getTheme()));
-                }else {
-                    fab.setBackgroundTintList(getResources().getColorStateList(colorIntArray[position]));
-                    fab.setImageDrawable(getResources().getDrawable(iconIntArray[position]));
-                }
-
-                // Scale up animation
-                ScaleAnimation expand =  new ScaleAnimation(0.2f, 1f, 0.2f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-                expand.setDuration(100);     // animation duration in milliseconds
-                expand.setInterpolator(new AccelerateInterpolator());
-                fab.startAnimation(expand);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-        fab.startAnimation(shrink);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -179,5 +137,90 @@ public class HomeActivity extends AbstractActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.all_activity__drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    /**
+     * Fab animation
+     */
+    private void animateFab(final int position) {
+        fab.clearAnimation();
+        // Scale down animation
+        ScaleAnimation shrink = new ScaleAnimation(1f, 0.2f, 1f, 0.2f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        shrink.setDuration(450);     // animation duration in milliseconds
+        shrink.setInterpolator(new DecelerateInterpolator());
+        shrink.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Change FAB color and icon
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    fab.setBackgroundTintList(getResources().getColorStateList(TabSection.ITEM_MAP.get(position).fabColor, getApplicationContext().getTheme()));
+                    fab.setImageDrawable(getResources().getDrawable(TabSection.ITEM_MAP.get(position).fabIcon, getApplicationContext().getTheme()));
+                } else {
+                    fab.setBackgroundTintList(getResources().getColorStateList(TabSection.ITEM_MAP.get(position).fabColor));
+                    fab.setImageDrawable(getResources().getDrawable(TabSection.ITEM_MAP.get(position).fabIcon));
+                }
+
+                // Scale up animation
+                ScaleAnimation expand = new ScaleAnimation(0.2f, 1f, 0.2f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                expand.setDuration(100);     // animation duration in milliseconds
+                expand.setInterpolator(new AccelerateInterpolator());
+                fab.startAnimation(expand);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        fab.startAnimation(shrink);
+    }
+
+
+    public static class TabSection {
+
+        public static final List<TabSection> ITEMS = new ArrayList<TabSection>();
+        public static final Map<Integer, TabSection> ITEM_MAP = new HashMap<>();
+
+        //int sectionLables = R.array.section_labels;
+
+        static {
+            addItem(new TabSection(0, "hard code: Home", R.drawable.ic_action_home, R.color.colorAccent, R.drawable.ic_action_add));
+            addItem(new TabSection(1, "hard code: Customer", R.drawable.ic_action_user, R.color.colorPrimaryDark, R.drawable.ic_action_add));
+            addItem(new TabSection(2, "hard code: FNA", R.drawable.ic_action_line_chart, R.color.color_error, R.drawable.ic_action_add));
+            addItem(new TabSection(3, "hard code: Quotation", R.drawable.ic_action_calculator, R.color.color_success, R.drawable.ic_action_add));
+            addItem(new TabSection(4, "hard code: Policy", R.drawable.ic_action_folder_open, R.color.colorAccent, R.drawable.ic_action_add));
+        }
+
+
+        private static void addItem(TabSection item) {
+            ITEMS.add(item);
+            ITEM_MAP.put(item.position, item);
+        }
+
+        public final int position;
+        public final String tabName;
+        public final int tabIcon;
+        public final int fabColor;
+        public final int fabIcon;
+
+        private TabSection(int position, String tabName, int tabIcon, int fabColor, int fabIcon) {
+            this.position = position;
+            this.tabName = tabName;
+            this.tabIcon = tabIcon;
+            this.fabColor = fabColor;
+            this.fabIcon = fabIcon;
+        }
+
+        @Override
+        public String toString() {
+            return tabName;
+        }
     }
 }
