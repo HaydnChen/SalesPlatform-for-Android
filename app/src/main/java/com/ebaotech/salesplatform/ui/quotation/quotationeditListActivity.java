@@ -12,11 +12,12 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ebaotech.salesplatform.R;
 
-import com.ebaotech.salesplatform.ui.quotation.dummy.DummyContent;
+import com.ebaotech.salesplatform.ui.quotation.data.QuotationTabs;
 
 import java.util.List;
 
@@ -43,7 +44,6 @@ public class QuotationEditListActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle(getTitle());
 
@@ -70,15 +70,15 @@ public class QuotationEditListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(QuotationTabs.ITEMS));
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<QuotationTabs.TabItem> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
+        public SimpleItemRecyclerViewAdapter(List<QuotationTabs.TabItem> items) {
             mValues = items;
         }
 
@@ -92,8 +92,8 @@ public class QuotationEditListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.mTabImage.setImageResource(mValues.get(position).tabIcon);
+            holder.mTabText.setText(mValues.get(position).tabName);
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -124,20 +124,20 @@ public class QuotationEditListActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
-            public final TextView mIdView;
-            public final TextView mContentView;
-            public DummyContent.DummyItem mItem;
+            public final ImageView mTabImage;
+            public final TextView mTabText;
+            public QuotationTabs.TabItem mItem;
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mIdView = (TextView) view.findViewById(R.id.id);
-                mContentView = (TextView) view.findViewById(R.id.content);
+                mTabImage = (ImageView) view.findViewById(R.id.quotation_edit__tab_icon);
+                mTabText = (TextView) view.findViewById(R.id.quotation_edit__tab_text);
             }
 
             @Override
             public String toString() {
-                return super.toString() + " '" + mContentView.getText() + "'";
+                return super.toString() + " '" + mTabText.getText() + "'";
             }
         }
     }
