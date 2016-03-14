@@ -1,7 +1,9 @@
 package com.ebaotech.salesplatform.core.database;
 
 import android.content.Context;
+import com.ebaotech.salesplatform.core.bo.AddressBo;
 import com.ebaotech.salesplatform.core.bo.CustomerBo;
+import com.ebaotech.salesplatform.core.bo.FamilyMemberBo;
 import com.ebaotech.salesplatform.core.error.SQLErrorHandler;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
@@ -22,7 +24,7 @@ import org.androidannotations.annotations.RootContext;
 public class SQLiteOrmWithCipherHelper extends OrmLiteSqliteOpenHelper {
   private static final String DATABASE_NAME = "sp.db";
   public static final String DATABASE_PASSWORD = "changeIT";
-  private static final int DATABASE_VERSION = 3;
+  private static final int DATABASE_VERSION = 4;
 
   private Map<String, Dao> daos = new HashMap<String, Dao>();
 
@@ -46,6 +48,8 @@ public class SQLiteOrmWithCipherHelper extends OrmLiteSqliteOpenHelper {
     try
     {
       TableUtils.createTable(connectionSource, CustomerBo.class);
+      TableUtils.createTable(connectionSource, AddressBo.class);
+      TableUtils.createTable(connectionSource, FamilyMemberBo.class);
     } catch (SQLException e)
     {
       errorHandler.handlerError(e);
@@ -59,6 +63,8 @@ public class SQLiteOrmWithCipherHelper extends OrmLiteSqliteOpenHelper {
     try
     {
       TableUtils.dropTable(connectionSource, CustomerBo.class, true);
+      TableUtils.dropTable(connectionSource, AddressBo.class, true);
+      TableUtils.dropTable(connectionSource, FamilyMemberBo.class, true);
       onCreate(database, connectionSource);
     } catch (SQLException e)
     {

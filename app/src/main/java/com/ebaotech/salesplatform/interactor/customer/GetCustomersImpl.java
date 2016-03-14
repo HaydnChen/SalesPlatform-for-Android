@@ -43,7 +43,7 @@ public class GetCustomersImpl implements GetCustomers {
                 customerBo.setName(customer.getName());
                 customerBo.setAge(customer.getAge());
                 customerBo.setGender(customer.getGender());
-                customerBo.setDetails(customer.getDetails());
+                customerBo.setComments(customer.getDetails());
                 customerDao.createIfNotExists(customerBo);
             }
         }
@@ -55,21 +55,8 @@ public class GetCustomersImpl implements GetCustomers {
     public void getCustomers(Callback callback) {
         this.callback = callback;
         // TODO: 3/2/16 10:17 PM  load data from db or cache
-        List<Customer> customerList = convertToDomain(customerDao.queryForAll());
+        List<Customer> customerList = CustomerMapper.convertCustomerListToDomain(customerDao.queryForAll());
         onItemsLoaded(customerList);
-    }
-
-    @Override public Customer convertToDomain(CustomerBo customerBo) {
-        Customer customer = new Customer(customerBo.getId().toString(),customerBo.getName(),customerBo.getAge(),customerBo.getGender(),customerBo.getDetails());
-        return customer;
-    }
-
-    @Override public List<Customer> convertToDomain(List<CustomerBo> customerBoList) {
-        List<Customer> customerList = new ArrayList<Customer>();
-        for (CustomerBo bo : customerBoList) {
-            customerList.add(convertToDomain(bo));
-        }
-        return customerList;
     }
 
     @UiThread

@@ -2,7 +2,6 @@ package com.ebaotech.salesplatform.mvp.view.model.customer;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,8 +13,8 @@ import android.widget.TextView;
 
 import com.ebaotech.salesplatform.R;
 import com.ebaotech.salesplatform.commons.util.TextUtil;
-import com.ebaotech.salesplatform.ui.customer.CustomerEditListActivity_;
 
+import com.ebaotech.salesplatform.ui.customer.CustomerEditActivity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +53,7 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
         holder.detailView.setText(TextUtil.truncateIfLengthMoreThan(80, model.getDetails()));
         holder.photoImage.setImageResource(R.drawable.ic_action_user);
 
-        holder.customerCardView.setTag(position);
+        holder.customerCardView.setTag(model.getId());
         holder.customerCardView.setOnClickListener(new View.OnClickListener() {
             /**
              * Called when a view has been clicked.
@@ -64,11 +63,10 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
             @SuppressLint("LongLogTag")
             @Override
             public void onClick(View v) {
-                int position = (Integer) v.getTag();
-                Log.d(TAG, "Element " + position + " clicked.");
+                String customerId = (String) v.getTag();
+                Log.d(TAG, "Customer " + customerId + " clicked.");
                 Context context = v.getContext();
-                Intent intent = new Intent(context, CustomerEditListActivity_.class);
-                context.startActivity(intent);
+                CustomerEditActivity.launch(context, customerId);
             }
         });
     }
