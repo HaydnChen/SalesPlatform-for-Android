@@ -80,4 +80,45 @@
     <!-- customer information editing-->
     <string name="title_customer_edit_list">Customer Detail</string>
     <string name="title_customer_edit_detail">CustomerList Detail</string>
+  <string name="title_customerdetail_list">CustomerDetails</string>
+  <string name="title_customerdetail_detail">CustomerDetail Detail</string>
+  <string name="title_customer_list">Customers</string>
+  <string name="title_customer_detail">Customer Detail</string>
+    <string name="title_customer_basic">Basic</string>
+    <string name="title_customer_address">Address</string>
+    <string name="title_customer_family">Address</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="label_customer_name">Name: </string>
+    <string name="label_customer_title">Title: </string>
+    <string name="label_customer_birthday">Birthday: </string>
+    <string name="label_customer_age">Age: </string>
+    <string name="label_customer_gender">Gender: </string>
+    <string name="label_customer_country">Country: </string>
+    <string name="label_customer_comments">Comments: </string>
+    <string name="label_customer_marital_status">Marital Status: </string>
+    <string name="label_customer_id_no">ID Number: </string>
+    <string name="label_customer_mobile">Mobile Phone: </string>
+    <string name="label_customer_email">Email Address: </string>
+    <string name="label_customer_address_type">Address Type: </string>
+    <string name="label_customer_address_detail">Address: </string>
+    <string name="label_customer_address_city">City/State: </string>
+    <string name="label_customer_address_postcode">Postal Code: </string>
+    <string name="label_address_table_header_type">Address Type</string>
+    <string name="label_address_table_header_detail">Address</string>
+    <string name="label_address_table_header_city">City/State</string>
+    <string name="label_address_table_header_country">Country</string>
+    <string name="label_address_table_header_postcode">Postal Code</string>
+    <string name="label_table_header_action">Actions</string>
+    <string name="label_customer_family_relation">Relationship: </string>
+    <string name="label_family_table_header_relation">Relationship</string>
+    <string name="label_family_table_header_name">Name</string>
+    <string name="label_family_table_header_age">Age</string>
+    <string name="label_family_table_header_gender">Gender</string>
+    <string name="label_family_table_header_mobile">Mobile</string>
+    <string name="label_family_table_header_email">Email</string>
+
+    <string name="radio_male">Male</string>
+    <string name="radio_female">Female</string>
+
 </resources>

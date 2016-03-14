@@ -1,10 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="section_labels">
-        <item>Home</item>
-        <item>Customer</item>
-        <item>FNA</item>
-        <item>Quotation &amp; Illustration</item>
-        <item>Policy</item>
+    <item>Home</item>
+    <item>Customer</item>
+    <item>FNA</item>
+    <item>Quotation &amp; Illustration</item>
+    <item>Policy</item>
+</string-array>
+    <string-array name="customer_section_labels">
+        <item>Basic</item>
+        <item>Address</item>
+        <item>Family</item>
+    </string-array>
+    <string-array name="customer_title_arrays">
+        <item>Mr</item>
+        <item>Miss</item>
+        <item>Dr.</item>
+        <item>Mdm.</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="customer_country_arrays">
+        <item>China</item>
+        <item>Indonesia</item>
+        <item>Singapore</item>
+        <item>Thailand</item>
+        <item>Malaysia</item>
+    </string-array>
+    <string-array name="customer_marital_status_arrays">
+        <item>Married</item>
+        <item>Single</item>
+        <item>Divorced</item>
+        <item>Widowed</item>
+    </string-array>
+    <string-array name="customer_address_type_arrays">
+        <item>Corresponding</item>
+        <item>Residential</item>
+        <item>Work</item>
+    </string-array>
+    <string-array name="customer_family_relation_arrays">
+        <item>Child</item>
+        <item>Spouse</item>
+        <item>Parents</item>
+        <item>Siblings</item>
     </string-array>
 </resources>

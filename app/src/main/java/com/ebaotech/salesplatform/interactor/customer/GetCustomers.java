@@ -16,8 +16,4 @@ public interface GetCustomers {
         void onCustomersLoaded(List<Customer> customerList);
         void onError(Exception e);
     }
-
-    Customer convertToDomain(CustomerBo customerBo);
-
-    List<Customer> convertToDomain(List<CustomerBo> customerBoList);
 }
