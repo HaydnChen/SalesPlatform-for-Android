@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--Zurich-->
+    <!--Zurich-->
     <color name="colorPrimary">#608CC8</color>
     <color name="colorPrimaryDark">#4066B2</color>
     <color name="colorPrimaryLight">#EBEFF7</color>
     <color name="colorAccent">#F50057</color>
+
+    <color name="mainBackground">#eeeeee</color>
+    <color name="listLine">#8d8e8f</color>
+    <color name="listBackground">#e3e4e4</color>
+    <color name="listSelected">#a8c7f5</color>
 
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#727272</color>
