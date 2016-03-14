@@ -7,4 +7,9 @@
         <item>询价和利益展示</item>
         <item>保单查询</item>
     </string-array>
+    <string-array name="customer_section_labels">
+        <item>基本信息</item>
+        <item>住址</item>
+        <item>家庭</item>
+    </string-array>
 </resources>

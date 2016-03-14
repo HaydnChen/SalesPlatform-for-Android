@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.ebaotech.salesplatform">
+    package="com.ebaotech.salesplatform" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -14,11 +14,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        tools:replace="icon, name">
+        tools:replace="icon, name" >
         <activity
             android:name=".ui.HomeActivity_"
             android:label="@string/title_activity_home"
-            android:theme="@style/MyMaterialTheme">
+            android:theme="@style/MyMaterialTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -33,6 +33,7 @@
                 android:value=".ui.prefer.SettingsActivity_" />
         </activity>
         <activity
+<<<<<<< HEAD
             android:name=".ui.customer.CustomerEditListActivity_"
             android:label="@string/title_customer_edit_list"
             android:theme="@style/AppTheme.NoActionBar"
@@ -67,6 +68,42 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.quotation.QuotationEditListActivity" />
+=======
+            android:name=".ui.customer.CustomerEditActivity_"
+            android:label="@string/title_customer_list"
+            android:parentActivityName=".ui.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ebaotech.salesplatform.ui.HomeActivity_" />
+        </activity>
+        <activity
+            android:name=".ui.customer.CustomerBasicActivity_"
+            android:label="@string/title_customer_basic"
+            android:parentActivityName=".ui.customer.CustomerEditActivity_"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ebaotech.salesplatform.ui.customer.CustomerEditActivity_" />
+        </activity>
+        <activity
+            android:name=".ui.customer.CustomerAddressActivity_"
+            android:label="@string/title_customer_address"
+            android:parentActivityName=".ui.customer.CustomerEditActivity_"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ebaotech.salesplatform.ui.customer.CustomerEditActivity_" />
+        </activity>
+        <activity
+            android:name=".ui.customer.CustomerFamilyActivity_"
+            android:label="@string/title_customer_family"
+            android:parentActivityName=".ui.customer.CustomerEditActivity_"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ebaotech.salesplatform.ui.customer.CustomerEditActivity_" />
+>>>>>>> master
         </activity>
     </application>
 
