@@ -18,4 +18,7 @@
     <string name="pref_title_sync_frequency">同步频率</string>
     <string name="pref_title_system_sync_settings">系统同步设定</string>
     <string name="pref_title_new_message_notifications">新消息通知</string>
+    <string name="quotation_edit__basic_info_tab">投保人信息</string>
+    <string name="quotation_edit__quote_tab">询价</string>
+    <string name="quotation_edit__pdf_tab">生成PDF</string>
 </resources>

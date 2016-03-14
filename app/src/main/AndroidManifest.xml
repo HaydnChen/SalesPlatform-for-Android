@@ -21,13 +21,36 @@
             android:theme="@style/MyMaterialTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.prefer.SettingsActivity_"
-            android:label="@string/title_activity_settings" />
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".ui.HomeActivity_">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.prefer.SettingsActivity_" />
+        </activity>
+        <activity
+            android:name=".ui.quotation.QuotationEditListActivity"
+            android:label="@string/title_quotation_edit_list"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.HomeActivity_">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.quotation.QuotationEditListActivity" />
+        </activity>
+        <activity
+            android:name=".ui.quotation.QuotationEditDetailActivity"
+            android:label="@string/title_quotation_edit_detail"
+            android:parentActivityName=".ui.quotation.QuotationEditListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.quotation.QuotationEditListActivity" />
+        </activity>
+
         <activity
             android:name=".ui.customer.CustomerEditActivity_"
             android:label="@string/title_customer_list"
