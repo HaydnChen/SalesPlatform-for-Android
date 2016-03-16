@@ -8,10 +8,23 @@
     android:textIsSelectable="true"
     tools:context="com.ebaotech.salesplatform.ui.quotation.QuotationEditProductActivity">
 
-    <EditText
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@id/customer_name"
-        android:text="customer name"
-        android:hint="customer name"/>
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@id/customer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="customer name"
+            android:text="John" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="adfsafsff"
+            ></Spinner>
+    </android.support.v7.widget.LinearLayoutCompat>
+
 </FrameLayout>

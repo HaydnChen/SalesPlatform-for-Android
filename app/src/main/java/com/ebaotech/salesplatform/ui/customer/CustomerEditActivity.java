@@ -16,6 +16,8 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.OptionsItem;
+import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
@@ -36,6 +38,7 @@ import org.androidannotations.annotations.ViewById;
  * to listen for item selections.
  */
 @EActivity(R.layout.activity_customer_app_bar)
+@OptionsMenu(R.menu.menu_customer_edit)
 public class CustomerEditActivity extends AbstractActivity
     implements CustomerEditLeftPaneFragment.Callbacks,CustomerView {
 
@@ -59,6 +62,8 @@ public class CustomerEditActivity extends AbstractActivity
 
   @Bean
   CustomerPresenter customerPresenter;
+
+  private int currentPosition = -1;
 
   public static void launch(Context context, String customerId) {
     CustomerEditActivity_.intent(context).extra(INTENT_EXTRA_PARAM_CUSTOMER_ID,customerId).start();
@@ -115,6 +120,9 @@ public class CustomerEditActivity extends AbstractActivity
    */
   @Override public void onItemSelected(int position) {
     if (mTwoPane) {
+      if (currentPosition == position) {
+        return;
+      }
       // In two-pane mode, show the detail view in this activity by
       // adding or replacing the detail fragment using a
       // fragment transaction.
@@ -124,6 +132,7 @@ public class CustomerEditActivity extends AbstractActivity
       getSupportFragmentManager().beginTransaction()
           .replace(R.id.customer_detail_container, fragment)
           .commit();
+      currentPosition = position;
     } else {
       if(position==0) {
         CustomerBasicActivity.launch(this);
@@ -150,7 +159,6 @@ public class CustomerEditActivity extends AbstractActivity
   @Override
   public void onStop() {
     super.onStop();
-    customerPresenter.setCustomerId(customerId);
     customerPresenter.stop();
   }
 
@@ -158,7 +166,24 @@ public class CustomerEditActivity extends AbstractActivity
   @UiThread
   public void setViewModel(CustomerViewModel customerViewModel) {
     this.customerViewModel = customerViewModel;
-    ((CustomerBasicFragment) frags[0]).setCustomerViewModel(customerViewModel);
+    for (Fragment fragment : frags) {
+      ((CustomerFragment) fragment).setCustomerViewModel(customerViewModel);
+    }
     onItemSelected(0);
+  }
+
+  @OptionsItem(R.id.action_save)
+  boolean menuSave() {
+    boolean result = true;
+    if (customerViewModel != null) {
+      for (Fragment fragment : frags) {
+        result &= ((CustomerFragment) fragment).save();
+      }
+      if (result) {
+        customerPresenter.save(customerViewModel);
+        this.finish();
+      }
+    }
+    return result;
   }
 }
