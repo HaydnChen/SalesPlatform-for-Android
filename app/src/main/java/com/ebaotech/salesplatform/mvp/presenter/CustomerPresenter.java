@@ -11,11 +11,13 @@ import com.ebaotech.salesplatform.mvp.view.CustomerView;
 import com.ebaotech.salesplatform.mvp.view.model.customer.AddressViewModel;
 import com.ebaotech.salesplatform.mvp.view.model.customer.CustomerViewModel;
 import com.ebaotech.salesplatform.mvp.view.model.customer.FamilyViewModel;
-import java.util.ArrayList;
-import java.util.List;
+
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.UiThread;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  *  Copyright (c) 2016.  ebaotech.com. All rights reserved.
@@ -76,7 +78,7 @@ public class CustomerPresenter extends BasePresenter implements Presenter {
         customerView.showActionLabel(exception.getMessage());
     }
 
-    public CustomerViewModel convertCustomerToModel(Customer customer) {
+    public static CustomerViewModel convertCustomerToModel(Customer customer) {
         CustomerViewModel customerViewModel = new CustomerViewModel();
         customerViewModel.setId(customer.getId());
         customerViewModel.setName(customer.getName());
@@ -97,7 +99,7 @@ public class CustomerPresenter extends BasePresenter implements Presenter {
         return customerViewModel;
     }
 
-    public AddressViewModel convertAddressToModel(Address address) {
+    public static AddressViewModel convertAddressToModel(Address address) {
         AddressViewModel addressViewModel = new AddressViewModel();
         addressViewModel.setId(address.getId());
         addressViewModel.setType(address.getType());
@@ -107,7 +109,7 @@ public class CustomerPresenter extends BasePresenter implements Presenter {
         return addressViewModel;
     }
 
-    public List<AddressViewModel> convertAddressListToModelList(List<Address> addressList) {
+    public static List<AddressViewModel> convertAddressListToModelList(List<Address> addressList) {
         List<AddressViewModel> addressViewModelList = new ArrayList<AddressViewModel>();
         for (Address address : addressList) {
             addressViewModelList.add(convertAddressToModel(address));
@@ -115,7 +117,7 @@ public class CustomerPresenter extends BasePresenter implements Presenter {
         return addressViewModelList;
     }
 
-    public FamilyViewModel convertFamilyToModel(FamilyMember familyMember) {
+    public static FamilyViewModel convertFamilyToModel(FamilyMember familyMember) {
         FamilyViewModel familyViewModel = new FamilyViewModel();
         familyViewModel.setId(familyMember.getId());
         familyViewModel.setAge(familyMember.getAge());
@@ -127,7 +129,7 @@ public class CustomerPresenter extends BasePresenter implements Presenter {
         return familyViewModel;
     }
 
-    public List<FamilyViewModel> convertFamilyListToModelList(List<FamilyMember> familyMemberList) {
+    public static List<FamilyViewModel> convertFamilyListToModelList(List<FamilyMember> familyMemberList) {
         List<FamilyViewModel> familyViewModelList = new ArrayList<FamilyViewModel>();
         for (FamilyMember familyMember : familyMemberList) {
             familyViewModelList.add(convertFamilyToModel(familyMember));

@@ -42,13 +42,13 @@
                 android:value=".ui.quotation.QuotationEditListActivity" />
         </activity>
         <activity
-            android:name=".ui.quotation.QuotationEditDetailActivity"
+            android:name=".ui.quotation.QuotationEditActivity_"
             android:label="@string/title_quotation_edit_detail"
-            android:parentActivityName=".ui.quotation.QuotationEditListActivity"
+            android:parentActivityName=".ui.HomeActivity_"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.quotation.QuotationEditListActivity" />
+                android:value=".ui.quotation.QuotationEditActivity_" />
         </activity>
 
         <activity

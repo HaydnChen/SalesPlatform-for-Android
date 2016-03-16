@@ -1,6 +1,10 @@
 package com.ebaotech.salesplatform.ui.quotation.data;
 
+import android.content.res.Resources;
+import android.support.v4.app.Fragment;
+
 import com.ebaotech.salesplatform.R;
+import com.ebaotech.salesplatform.ui.AbstractActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,4 +62,14 @@ public class QuotationTabs {
             return tabDesc;
         }
     }
+
+    public static String[] getTabName(AbstractActivity activity) {
+        Resources res = activity.getResources();
+        return new String[]{res.getString(ITEMS.get(0).tabName), res.getString(ITEMS.get(1).tabName), res.getString(ITEMS.get(2).tabName)};
+    }
+    public static String[] getTabName(Fragment fragment) {
+        Resources res = fragment.getResources();
+        return new String[]{res.getString(ITEMS.get(0).tabName), res.getString(ITEMS.get(1).tabName), res.getString(ITEMS.get(2).tabName)};
+    }
+
 }
