@@ -9,6 +9,7 @@ import com.ebaotech.salesplatform.domain.FamilyMember;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by haydn.chen on 3/9/2016.
@@ -22,6 +23,7 @@ public class CustomerMapper {
     customer.setTitle(customerBo.getTitle());
     customer.setBirthday(customerBo.getBirthday());
     customer.setAge(customerBo.getAge());
+    customer.setGender(customerBo.getGender());
     customer.setCountry(customerBo.getCountry());
     customer.setOccupation(customerBo.getOccupation());
     customer.setDetails(customerBo.getComments());
@@ -51,11 +53,25 @@ public class CustomerMapper {
   public static Address convertAddressToDomain(AddressBo addressBo) {
     Address address = new Address();
     address.setId(addressBo.getId().toString());
+    address.setAddress(addressBo.getAddress());
     address.setType(addressBo.getType());
     address.setCity(addressBo.getCity());
     address.setCountry(addressBo.getCountry());
     address.setPostcode(addressBo.getPostcode());
     return address;
+  }
+
+  public static AddressBo convertAddressToBo(Address address) {
+    AddressBo addressBo = new AddressBo();
+    if (StringUtils.isNotBlank(address.getId())) {
+      addressBo.setId(Integer.valueOf(address.getId()));
+    }
+    addressBo.setType(address.getType());
+    addressBo.setAddress(address.getAddress());
+    addressBo.setCity(address.getCity());
+    addressBo.setCountry(address.getCountry());
+    addressBo.setPostcode(address.getPostcode());
+    return addressBo;
   }
 
   public static List<Address> convertAddressListToDomain(Collection<AddressBo> addressBoList) {
@@ -73,10 +89,27 @@ public class CustomerMapper {
     familyMember.setName(familyMemberBo.getName());
     familyMember.setBirthday(familyMemberBo.getBirthday());
     familyMember.setAge(familyMemberBo.getAge());
+    familyMember.setGender(familyMemberBo.getGender());
     familyMember.setOccupation(familyMemberBo.getOccupation());
     familyMember.setMobile(familyMemberBo.getMobile());
     familyMember.setEmail(familyMemberBo.getEmail());
     return familyMember;
+  }
+
+  public static FamilyMemberBo convertFamilyMemberToBo(FamilyMember familyMember) {
+    FamilyMemberBo familyMemberBo = new FamilyMemberBo();
+    if (StringUtils.isNotBlank(familyMember.getId())) {
+      familyMemberBo.setId(Integer.valueOf(familyMember.getId()));
+    }
+    familyMemberBo.setRelationToPh(familyMember.getRelationToPh());
+    familyMemberBo.setName(familyMember.getName());
+    familyMemberBo.setBirthday(familyMember.getBirthday());
+    familyMemberBo.setAge(familyMember.getAge());
+    familyMemberBo.setGender(familyMember.getGender());
+    familyMemberBo.setOccupation(familyMember.getOccupation());
+    familyMemberBo.setMobile(familyMember.getMobile());
+    familyMemberBo.setEmail(familyMember.getEmail());
+    return familyMemberBo;
   }
 
   public static List<FamilyMember> convertFamilyMemberListToDomain(Collection<FamilyMemberBo> familyMemberBoList) {

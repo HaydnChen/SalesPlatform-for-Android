@@ -1,6 +1,7 @@
 package com.ebaotech.salesplatform.core.dao;
 
 import android.content.Context;
+import com.ebaotech.salesplatform.core.bo.AddressBo;
 import com.ebaotech.salesplatform.core.bo.CustomerBo;
 import com.ebaotech.salesplatform.core.error.ErrorHandler;
 import com.ebaotech.salesplatform.core.error.SQLErrorHandler;
