@@ -79,11 +79,6 @@ public class QuotationEditActivity extends AbstractActivity
         QuotationEditActivity_.intent(context).extra(INTENT_EXTRA_PARAM_QUOTATION_ID, quotationId).extra(INTENT_EXTRA_PARAM_POLICY_HOLDER_ID, policyHolderId).start();
     }
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView();
-//    }
 
     @AfterViews
     protected void initPage() {
@@ -109,7 +104,7 @@ public class QuotationEditActivity extends AbstractActivity
 
         frags = new Fragment[]{
                 CustomerBasicFragment.newInstance(this),
-                QuotationProductFragment.newInstance(this)
+                QuotationEditProductFragment.newInstance(this)
         };
     }
 
@@ -165,7 +160,7 @@ public class QuotationEditActivity extends AbstractActivity
     @Override
     public void onStart() {
         super.onStart();
-        if(null != quotationId) {   // load Quotation and show
+        if (null != quotationId) {   // load Quotation and show
             quotationPresenter.setQuotationId(quotationId);
         } else if (null != policyHolderId) { //new quotation with this policy holder
             quotationPresenter.setPolicyHolderId(policyHolderId);
@@ -186,6 +181,7 @@ public class QuotationEditActivity extends AbstractActivity
         this.quotationViewModel = quotationViewModel;
 
         ((CustomerBasicFragment) frags[0]).setCustomerViewModel(quotationViewModel.getPolicyHolder());
+        ((QuotationEditProductFragment) frags[1]).setQuotationViewModel(quotationViewModel);
         onItemSelected(0);
-     }
+    }
 }
