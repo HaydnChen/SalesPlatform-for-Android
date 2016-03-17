@@ -55,6 +55,7 @@ public class QuotationEditActivity extends AbstractActivity
      * device.
      */
     private boolean mTwoPane;
+    private int mCurrentPosition = -1;
 
     @ViewById
     Toolbar toolbar;
@@ -131,16 +132,17 @@ public class QuotationEditActivity extends AbstractActivity
      */
     @Override
     public void onItemSelected(int position) {
+
         if (mTwoPane) {
-            // In two-pane mode, show the detail view in this activity by
-            // adding or replacing the detail fragment using a
-            // fragment transaction.
-            Bundle arguments = new Bundle();
-            Fragment fragment = frags[position];
-            fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.quotation_edit_detail_container, fragment)
-                    .commit();
+            if (mCurrentPosition != position) {
+                Bundle arguments = new Bundle();
+                Fragment fragment = frags[position];
+                fragment.setArguments(arguments);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.quotation_edit_detail_container, fragment)
+                        .commit();
+            }
+            mCurrentPosition = position;
         } else {
             if (position == 0) {
                 CustomerBasicActivity.launch(this);
