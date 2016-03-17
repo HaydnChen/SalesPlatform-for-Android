@@ -74,7 +74,7 @@ public class CustomerEditLeftPaneFragment extends ListFragment {
 
     // TODO: replace with a real list adapter.
     setListAdapter(new ArrayAdapter<String>(getActivity(),
-        android.R.layout.simple_list_item_activated_1, android.R.id.text1, titles));
+        android.R.layout.simple_list_item_activated_2, android.R.id.text1, titles));
   }
 
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
