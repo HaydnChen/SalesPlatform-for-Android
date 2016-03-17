@@ -186,4 +186,11 @@ public class CustomerEditActivity extends AbstractActivity
     }
     return result;
   }
+
+  @OptionsItem(R.id.action_delete)
+  boolean menuDelete() {
+    customerPresenter.delete(customerId);
+    this.finish();
+    return true;
+  }
 }

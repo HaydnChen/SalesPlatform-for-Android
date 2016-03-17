@@ -56,15 +56,23 @@ public class CustomerFamilyFragment extends AbstractFragment implements Customer
 
   private CustomerViewModel customerViewModel;
 
-  private List<FamilyViewModel> familyViewModelList;
+  private List<FamilyViewModel> currentFamilyViewModelList;
 
   @AfterViews
   void intPage() {
-    familyViewModelList = new ArrayList<FamilyViewModel>();
-    if (customerViewModel.getFamilyViewModels()!=null) {
-      for (FamilyViewModel familyViewModel : customerViewModel.getFamilyViewModels()) {
-        addFamilyRow(familyViewModel);
+    rowNum = 0;
+    if (currentFamilyViewModelList != null) {
+      // reload page
+      for (FamilyViewModel familyViewModel : currentFamilyViewModelList) {
+        addFamilyRow(familyViewModel, true);
       }
+    } else if (customerViewModel.getFamilyViewModels()!=null) {
+      currentFamilyViewModelList = new ArrayList<FamilyViewModel>();
+      for (FamilyViewModel familyViewModel : customerViewModel.getFamilyViewModels()) {
+        addFamilyRow(familyViewModel, false);
+      }
+    } else {
+      currentFamilyViewModelList = new ArrayList<FamilyViewModel>();
     }
   }
 
@@ -77,7 +85,7 @@ public class CustomerFamilyFragment extends AbstractFragment implements Customer
   @Click(R.id.fab)
   void onFabClick(View view) {
     if (checkForm(view)) {
-      addFamilyRow(null);
+      addFamilyRow(null, false);
       clearForm();
     }
   }
@@ -101,7 +109,7 @@ public class CustomerFamilyFragment extends AbstractFragment implements Customer
     email.setText("");
   }
 
-  private void addFamilyRow(FamilyViewModel familyViewModel) {
+  private void addFamilyRow(FamilyViewModel familyViewModel, boolean isReloadPage) {
     TableRow tableRow = new TableRow(this.getContext());
     LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
         TableRow.LayoutParams.WRAP_CONTENT,
@@ -141,7 +149,7 @@ public class CustomerFamilyFragment extends AbstractFragment implements Customer
         TableRow tableRow = (TableRow) view.getParent();
         int index = table.indexOfChild(tableRow) - 1;
         table.removeView(tableRow);
-        familyViewModelList.remove(index);
+        currentFamilyViewModelList.remove(index);
         rowNum--;
       }
     });
@@ -160,7 +168,9 @@ public class CustomerFamilyFragment extends AbstractFragment implements Customer
     tableRow.addView(button);
     table.addView(tableRow);
     rowNum ++;
-    familyViewModelList.add(newFamilyViewModel);
+    if (!isReloadPage) {
+      currentFamilyViewModelList.add(newFamilyViewModel);
+    }
   }
 
   @Override
@@ -169,8 +179,8 @@ public class CustomerFamilyFragment extends AbstractFragment implements Customer
   }
 
   @Override public boolean save() {
-    if (familyViewModelList != null) {
-      customerViewModel.setFamilyViewModels(familyViewModelList);
+    if (currentFamilyViewModelList != null) {
+      customerViewModel.setFamilyViewModels(currentFamilyViewModelList);
     }
     return true;
   }

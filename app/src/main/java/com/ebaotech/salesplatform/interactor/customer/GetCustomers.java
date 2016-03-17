@@ -3,6 +3,7 @@ package com.ebaotech.salesplatform.interactor.customer;
 import com.ebaotech.salesplatform.core.bo.CustomerBo;
 import com.ebaotech.salesplatform.domain.Customer;
 
+import com.ebaotech.salesplatform.domain.CustomerSearch;
 import java.util.List;
 
 /**
@@ -11,6 +12,7 @@ import java.util.List;
  */
 public interface GetCustomers {
     void getCustomers(Callback callback);
+    void searchCustomers(CustomerSearch customerSearch, Callback callback);
 
     interface Callback {
         void onCustomersLoaded(List<Customer> customerList);

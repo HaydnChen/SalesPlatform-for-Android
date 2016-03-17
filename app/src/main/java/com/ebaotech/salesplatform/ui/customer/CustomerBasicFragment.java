@@ -53,9 +53,8 @@ public class CustomerBasicFragment extends AbstractFragment implements CustomerF
   @AfterViews
   void initPage() {
     name.setText(customerViewModel.getName());
-    age.setText(customerViewModel.getAge()+"");
-    country.setSelection(
-        ((ArrayAdapter<String>) country.getAdapter()).getPosition(customerViewModel.getCountry()));
+    age.setText(customerViewModel.getAge()==null?"":customerViewModel.getAge().toString());
+    country.setSelection(((ArrayAdapter<String>) country.getAdapter()).getPosition(customerViewModel.getCountry()));
     ((RadioButton) gender.getChildAt("female".equalsIgnoreCase(customerViewModel.getGender())?1:0)).setChecked(
         true);
     comments.setText(customerViewModel.getDetails());
