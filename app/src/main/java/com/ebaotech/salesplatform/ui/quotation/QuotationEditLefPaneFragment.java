@@ -80,7 +80,7 @@ public class QuotationEditLefPaneFragment extends ListFragment {
 
         // TODO: replace with a real list adapter.
         setListAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_activated_2, android.R.id.text1, titles));
+                android.R.layout.preference_category, titles));
     }
 
     @Override
