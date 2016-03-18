@@ -52,6 +52,15 @@
         </activity>
 
         <activity
+            android:name=".ui.quotation.QuotationEditProductActivity_"
+            android:label="@string/title_customer_basic"
+            android:parentActivityName=".ui.quotation.QuotationEditActivity_"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ebaotech.salesplatform.ui.quotation.QuotationEditProductActivity_" />
+        </activity>
+        <activity
             android:name=".ui.customer.CustomerEditActivity_"
             android:label="@string/title_customer_list"
             android:parentActivityName=".ui.HomeActivity"

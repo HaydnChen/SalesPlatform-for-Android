@@ -13,12 +13,12 @@ import com.ebaotech.salesplatform.mvp.presenter.QuotationPresenter;
 import com.ebaotech.salesplatform.mvp.view.QuotationView;
 import com.ebaotech.salesplatform.mvp.view.model.quotation.QuotationViewModel;
 import com.ebaotech.salesplatform.ui.AbstractActivity;
-import com.ebaotech.salesplatform.ui.customer.CustomerAddressActivity;
 import com.ebaotech.salesplatform.ui.customer.CustomerBasicActivity;
 import com.ebaotech.salesplatform.ui.customer.CustomerBasicFragment;
 import com.ebaotech.salesplatform.ui.customer.CustomerDetailFragment;
 import com.ebaotech.salesplatform.ui.customer.CustomerEditLeftPaneFragment;
 import com.ebaotech.salesplatform.ui.customer.CustomerFamilyActivity;
+import com.rey.material.app.ThemeManager;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -34,11 +34,11 @@ import org.androidannotations.annotations.ViewById;
  * lead to a {@link CustomerBasicActivity} representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
- * <p/>
+ * <p>
  * The activity makes heavy use of fragments. The list of items is a
  * {@link CustomerEditLeftPaneFragment} and the item details
  * (if present) is a {@link CustomerDetailFragment}.
- * <p/>
+ * <p>
  * This activity also implements the required
  * {@link CustomerEditLeftPaneFragment.Callbacks} interface
  * to listen for item selections.
@@ -87,6 +87,8 @@ public class QuotationEditActivity extends AbstractActivity
         toolbar.setTitle(getTitle());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        ThemeManager.init(this, 2, 0, null);
+
         quotationPresenter.setView(this);
 
         if (findViewById(R.id.quotation_edit_detail_container) != null) {
@@ -130,9 +132,11 @@ public class QuotationEditActivity extends AbstractActivity
      * Callback method from {@link CustomerEditLeftPaneFragment.Callbacks}
      * indicating that the item with the given ID was selected.
      */
+
+    boolean itemSelected = false;
+
     @Override
     public void onItemSelected(int position) {
-
         if (mTwoPane) {
             if (mCurrentPosition != position) {
                 Bundle arguments = new Bundle();
@@ -142,16 +146,20 @@ public class QuotationEditActivity extends AbstractActivity
                         .replace(R.id.quotation_edit_detail_container, fragment)
                         .commit();
             }
-            mCurrentPosition = position;
         } else {
-            if (position == 0) {
-                CustomerBasicActivity.launch(this);
-            } else if (position == 1) {
-                CustomerAddressActivity.launch(this);
-            } else if (position == 2) {
-                CustomerFamilyActivity.launch(this);
+            if (itemSelected) { //not first time
+                if (position == 0) {
+                    CustomerBasicActivity.launch(this);
+                } else if (position == 1) {
+                    QuotationEditProductActivity.launch(this);
+                } else if (position == 2) {
+                    CustomerFamilyActivity.launch(this);
+                }
             }
+            itemSelected = !itemSelected;
         }
+
+        mCurrentPosition = position;
     }
 
     @Override
@@ -184,6 +192,7 @@ public class QuotationEditActivity extends AbstractActivity
 
         ((CustomerBasicFragment) frags[0]).setCustomerViewModel(quotationViewModel.getPolicyHolder());
         ((QuotationEditProductFragment) frags[1]).setQuotationViewModel(quotationViewModel);
+
         onItemSelected(0);
     }
 }

@@ -240,6 +240,7 @@
         <item name="et_dividerColor">@drawable/color_divider_dark</item>
         <item name="et_labelTextColor">@drawable/color_label_dark</item>
         <item name="et_supportTextErrorColor">#FFFF0000</item>
+        <item name="et_labelEnable">true</item>
         <item name="et_dividerErrorColor">#FFFF0000</item>
     </style>
 

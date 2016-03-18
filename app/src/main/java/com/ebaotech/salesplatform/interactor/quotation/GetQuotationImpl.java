@@ -1,4 +1,4 @@
-package com.ebaotech.salesplatform.interactor.quotation;
+  package com.ebaotech.salesplatform.interactor.quotation;
 
 import com.ebaotech.salesplatform.core.dao.CustomerDao;
 import com.ebaotech.salesplatform.core.dao.QuotationDao;

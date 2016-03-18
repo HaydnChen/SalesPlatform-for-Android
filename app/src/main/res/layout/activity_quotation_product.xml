@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.ebaotech.salesplatform.ui.customer.CustomerBasicActivity"
+    tools:context="com.ebaotech.salesplatform.ui.quotation.QuotationEditProductActivity"
     tools:ignore="MergeRootFrame">
 
     <android.support.design.widget.AppBarLayout
@@ -34,6 +34,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/fragment_customer_basic" />
+    <include layout="@layout/fragment_quotation_product" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -21,7 +21,7 @@ import org.androidannotations.annotations.ViewById;
 @EFragment(R.layout.fragment_quotation_product)
 public class QuotationEditProductFragment extends AbstractFragment {
 
-    @ViewById(R.id.customer_name)
+    @ViewById(R.id.et_input__customer_name)
     EditText customerName;
 
     private QuotationViewModel quotationViewModel;
@@ -37,6 +37,7 @@ public class QuotationEditProductFragment extends AbstractFragment {
         if (null != quotationViewModel) {
             customerName.setText(quotationViewModel.getPolicyHolder().getName());
         }
+
     }
 
     public void setQuotationViewModel(QuotationViewModel quotationViewModel) {
