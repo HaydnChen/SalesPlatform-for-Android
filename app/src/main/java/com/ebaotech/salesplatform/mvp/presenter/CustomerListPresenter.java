@@ -94,7 +94,7 @@ public class CustomerListPresenter extends BasePresenter implements Presenter {
         customerSearch.setGender(customerSearchModel.getGender());
         customerSearch.setAgeFrom(customerSearchModel.getAgeFrom());
         customerSearch.setAgeTo(customerSearchModel.getAgeTo());
-        customerSearch.setIdNumber(customerSearch.getIdNumber());
+        customerSearch.setIdNumber(customerSearchModel.getIdNumber());
         return customerSearch;
     }
 

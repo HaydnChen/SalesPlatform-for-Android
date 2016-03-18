@@ -40,7 +40,7 @@ public class CustomerDao extends AbstractDao<CustomerBo,Integer> {
         where.and().le("age",ageTo);
       }
       if (StringUtils.isNotBlank(idNumber)) {
-        where.and().like("id_number","%"+idNumber+"%");
+        where.and().like("idNumber","%"+idNumber+"%");
       }
       customerBoList = queryBuilder.query();
     } catch (SQLException e) {

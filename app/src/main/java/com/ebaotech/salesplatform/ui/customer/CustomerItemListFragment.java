@@ -70,6 +70,8 @@ public class CustomerItemListFragment extends AbstractFragment implements Custom
 
     private CustomerListModelAdapter customerListModelAdapter;
 
+    boolean hasSearched = false;
+
     /**
      * return a new instance
      * @return CustomerItemListFragment
@@ -112,7 +114,12 @@ public class CustomerItemListFragment extends AbstractFragment implements Custom
     public void onStart() {
         super.onStart();
         //customerListPresenter.start();
+        if (hasSearched) {
+            onBtnSearchClick();
+        }
     }
+
+
 
     @Override
     public void onStop() {
@@ -133,7 +140,7 @@ public class CustomerItemListFragment extends AbstractFragment implements Custom
     }
 
     @Click(R.id.btnSearch)
-    void onBtnSearchClick(View view) {
+    void onBtnSearchClick() {
         CustomerSearchModel customerSearchModel = new CustomerSearchModel();
         customerSearchModel.setName(searchName.getText().toString());
         customerSearchModel.setGender(((RadioButton) searchGender.findViewById(
@@ -146,6 +153,7 @@ public class CustomerItemListFragment extends AbstractFragment implements Custom
         }
         customerSearchModel.setIdNumber(searchIdNumber.getText().toString());
         customerListPresenter.query(customerSearchModel);
+        hasSearched = true;
     }
 
     @Click(R.id.btnReset)

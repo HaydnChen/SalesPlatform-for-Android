@@ -1,12 +1,15 @@
 package com.ebaotech.salesplatform.ui.customer;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import android.widget.Toast;
 import com.ebaotech.salesplatform.R;
 import com.ebaotech.salesplatform.mvp.presenter.CustomerPresenter;
 import com.ebaotech.salesplatform.mvp.view.CustomerView;
@@ -189,8 +192,17 @@ public class CustomerEditActivity extends AbstractActivity
 
   @OptionsItem(R.id.action_delete)
   boolean menuDelete() {
-    customerPresenter.delete(customerId);
-    this.finish();
+    new AlertDialog.Builder(this)
+        .setTitle("Delete customer")
+        .setMessage("Are you sure to delete this customer?")
+        .setIcon(android.R.drawable.ic_dialog_alert)
+        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+          public void onClick(DialogInterface dialog, int whichButton) {
+            customerPresenter.delete(customerId);
+            CustomerEditActivity.this.finish();
+          }})
+        .setNegativeButton(android.R.string.no, null).show();
     return true;
   }
 }
