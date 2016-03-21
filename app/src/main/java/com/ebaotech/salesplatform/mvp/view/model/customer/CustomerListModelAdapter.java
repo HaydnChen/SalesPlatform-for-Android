@@ -52,7 +52,7 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
         holder.ageView.setText(model.getAge() + " years old");
         holder.nameView.setText(model.getName());
         holder.genderView.setText(model.getGender());
-        holder.detailView.setText(TextUtil.truncateIfLengthMoreThan(80, model.getDetails()));
+        holder.detailView.setText(TextUtil.truncateIfLengthMoreThan(50, model.getDetails()));
         holder.photoImage.setImageResource(R.drawable.ic_action_user);
 
         holder.customerCardView.setTag(model.getId());

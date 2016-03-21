@@ -4,25 +4,17 @@
     android:id="@+id/quotation_product"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:paddingTop="36dp"
     android:textIsSelectable="true"
-    tools:context="com.ebaotech.salesplatform.ui.quotation.QuotationEditProductActivity">
+    tools:context="com.ebaotech.salesplatform.ui.quotation.QuotationEditProductActivity"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp">
 
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/title"
-            android:text="Title"/>
-        <TwoLineListItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="2dp"
-            android:background="@color/separator_line"/>
 
 
         <com.rey.material.widget.EditText
@@ -44,7 +36,6 @@
             android:hint="Input with label"
             app:et_inputId="@+id/textfield_et_label_input"
             app:et_supportMode="none"
-
             app:v_styleId="@array/edittext"/>
 
         <com.rey.material.widget.EditText
