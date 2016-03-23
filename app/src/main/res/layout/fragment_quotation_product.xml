@@ -1,91 +1,160 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/quotation_product"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="36dp"
-    android:textIsSelectable="true"
-    tools:context="com.ebaotech.salesplatform.ui.quotation.QuotationEditProductActivity"
+    android:paddingBottom="16dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:paddingBottom="16dp">
+    android:paddingTop="48dp"
+    android:textIsSelectable="true"
+    tools:context="com.ebaotech.salesplatform.ui.quotation.QuotationEditProductActivity">
 
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <com.rey.material.widget.TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Plan Information"
+            app:v_styleId="@array/text_title" />
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:stretchColumns="3">
+
+            <TableRow android:layout_margin="5dp">
+
+                <com.rey.material.widget.Spinner
+                    android:id="@+id/sp__product"
+                    android:layout_width="@dimen/form_input_width"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:gravity="left"
+                    android:minWidth="228dp"
+                    app:spn_label="Base Plan"
+                    app:v_styleId="@array/spinner" />
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_column="1" />
+
+                <com.rey.material.widget.Spinner
+                    android:id="@+id/sp__plan_option"
+                    android:layout_width="@dimen/form_input_width"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:gravity="left"
+                    android:minWidth="228dp"
+                    app:spn_label="Plan Option"
+                    app:v_styleId="@array/spinner" >
+
+                </com.rey.material.widget.Spinner>
+            </TableRow>
+
+            <TableRow android:layout_margin="5dp">
+
+                <com.rey.material.widget.EditText
+                    android:id="@+id/et_label__back_date"
+                    android:layout_width="@dimen/form_input_width_with_icon"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="Back Date"
+                    android:inputType="text"
+                    app:et_inputId="@+id/et_input__back_date"
+                    app:et_supportMode="none"
+                    app:v_styleId="@array/edittext" >
+
+                </com.rey.material.widget.EditText>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_action_cloud"/>
+            </TableRow>
+        </TableLayout>
+
+        <com.rey.material.widget.TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Benefit Information"
+            app:v_styleId="@array/text_title" />
 
         <com.rey.material.widget.EditText
             android:id="@+id/et_label__customer_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
             android:hint="Customer Name"
+            android:inputType="text"
             app:et_inputId="@+id/et_input__customer_name"
             app:et_supportMode="none"
-            app:v_styleId="@array/edittext"/>
+            app:v_styleId="@array/edittext" />
 
 
         <com.rey.material.widget.EditText
             android:id="@+id/textfield_et_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
             android:hint="Input with label"
+            android:inputType="text"
             app:et_inputId="@+id/textfield_et_label_input"
             app:et_supportMode="none"
-            app:v_styleId="@array/edittext"/>
+            app:v_styleId="@array/edittext" />
 
         <com.rey.material.widget.EditText
             android:id="@+id/textfield_et_char_counter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:inputType="textMultiLine"
             android:hint="Input with char counter"
+            android:inputType="textMultiLine"
             app:et_inputId="@+id/textfield_et_char_counter_input"
-            app:et_supportMode="charCounter"
             app:et_supportMaxChars="20"
-            app:v_styleId="@array/edittext"/>
+            app:et_supportMode="charCounter"
+            app:v_styleId="@array/edittext" />
 
         <com.rey.material.widget.EditText
             android:id="@+id/textfield_et_helper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:inputType="textPassword"
             android:hint="Input with helper"
+            android:inputType="textPassword"
+            app:et_helper="Enter password"
             app:et_inputId="@+id/textfield_et_helper_input"
             app:et_supportMode="helper"
-            app:et_helper="Enter password"
-            app:v_styleId="@array/edittext"/>
+            app:v_styleId="@array/edittext" />
 
         <com.rey.material.widget.EditText
             android:id="@+id/textfield_et_helper_error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:inputType="textPassword"
             android:hint="Input with helper + error"
+            android:inputType="textPassword"
+            app:et_helper="Enter password"
             app:et_inputId="@+id/textfield_et_label_error_input"
             app:et_supportMode="helperWithError"
-            app:et_helper="Enter password"
-            app:v_styleId="@array/edittext"/>
+            app:v_styleId="@array/edittext" />
 
         <com.rey.material.widget.EditText
             android:id="@+id/textfield_et_disable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:inputType="text"
-            android:hint="Disabled"
-            android:text="Input text"
             android:enabled="false"
+            android:hint="Disabled"
+            android:inputType="text"
+            android:text="Input text"
             app:et_inputId="@+id/textfield_et_disable_input"
             app:et_supportMode="none"
-            app:v_styleId="@array/edittext"/>
+            app:v_styleId="@array/edittext" />
 
     </android.support.v7.widget.LinearLayoutCompat>
 

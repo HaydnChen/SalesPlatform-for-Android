@@ -15,6 +15,7 @@
     <color name="colorControlActivatedHalf">#9003A9F4</color>
     <color name="colorAccentQuarter">#3300E5FF</color>
     <color name="colorAccentHalf">#9000E5FF</color>
+    <color name="formBackground">#FFFFFF</color>
 
     <array name="progress_colors_light">
         <item>#FF03A9F4</item>
