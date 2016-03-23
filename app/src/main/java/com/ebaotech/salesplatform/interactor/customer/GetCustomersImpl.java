@@ -3,8 +3,6 @@ package com.ebaotech.salesplatform.interactor.customer;
 import com.ebaotech.salesplatform.core.bo.CustomerBo;
 import com.ebaotech.salesplatform.core.dao.CustomerDao;
 import com.ebaotech.salesplatform.domain.Customer;
-<<<<<<< HEAD
-=======
 import com.ebaotech.salesplatform.domain.CustomerSearch;
 
 import org.androidannotations.annotations.AfterInject;
