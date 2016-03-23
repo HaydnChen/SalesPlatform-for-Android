@@ -6,8 +6,6 @@ import com.ebaotech.salesplatform.domain.Customer;
 <<<<<<< HEAD
 =======
 import com.ebaotech.salesplatform.domain.CustomerSearch;
-import com.ebaotech.salesplatform.exception.GetCustomersException;
->>>>>>> master
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
