@@ -2,9 +2,7 @@ package com.ebaotech.salesplatform.ui.customer;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -55,15 +53,23 @@ public class CustomerAddressFragment extends AbstractFragment implements Custome
 
   private CustomerViewModel customerViewModel;
 
-  private List<AddressViewModel> addressViewModelList;
+  private List<AddressViewModel> currentAddressViewModelList;
 
   @AfterViews
   void intPage() {
-    addressViewModelList = new ArrayList<>();
-    if (customerViewModel.getAddressViewModels()!=null) {
-      for (AddressViewModel addressViewModel : customerViewModel.getAddressViewModels()) {
-        addAddressRow(addressViewModel);
+    rowNum = 0;
+    if (currentAddressViewModelList != null) {
+      // reload page
+      for (AddressViewModel addressViewModel : currentAddressViewModelList) {
+        addAddressRow(addressViewModel, true);
       }
+    } else if (customerViewModel.getAddressViewModels() != null) {
+      currentAddressViewModelList = new ArrayList<AddressViewModel>();
+      for (AddressViewModel addressViewModel : customerViewModel.getAddressViewModels()) {
+        addAddressRow(addressViewModel, false);
+      }
+    } else {
+      currentAddressViewModelList = new ArrayList<AddressViewModel>();
     }
   }
 
@@ -76,7 +82,7 @@ public class CustomerAddressFragment extends AbstractFragment implements Custome
   @Click(R.id.fab)
   void onFabClick(View view) {
     if (checkForm(view)) {
-      addAddressRow(null);
+      addAddressRow(null,false);
       clearForm();
     }
   }
@@ -99,7 +105,7 @@ public class CustomerAddressFragment extends AbstractFragment implements Custome
     postcode.setText("");
   }
 
-  private void addAddressRow(AddressViewModel addressViewModel) {
+  private void addAddressRow(AddressViewModel addressViewModel, boolean isReloadPage) {
     TableRow tableRow = new TableRow(this.getContext());
     LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
         TableRow.LayoutParams.WRAP_CONTENT,
@@ -134,7 +140,7 @@ public class CustomerAddressFragment extends AbstractFragment implements Custome
         TableRow tableRow = (TableRow) view.getParent();
         int index = table.indexOfChild(tableRow) - 1;
         table.removeView(tableRow);
-        addressViewModelList.remove(index);
+        currentAddressViewModelList.remove(index);
         rowNum--;
       }
     });
@@ -152,7 +158,9 @@ public class CustomerAddressFragment extends AbstractFragment implements Custome
     tableRow.addView(button);
     table.addView(tableRow);
     rowNum ++;
-    addressViewModelList.add(newAddressViewModel);
+    if (!isReloadPage) {
+      currentAddressViewModelList.add(newAddressViewModel);
+    }
   }
 
   @Override
@@ -161,8 +169,8 @@ public class CustomerAddressFragment extends AbstractFragment implements Custome
   }
 
   @Override public boolean save() {
-    if (addressViewModelList != null) {
-      customerViewModel.setAddressViewModels(addressViewModelList);
+    if (currentAddressViewModelList != null) {
+      customerViewModel.setAddressViewModels(currentAddressViewModelList);
     }
     return true;
   }

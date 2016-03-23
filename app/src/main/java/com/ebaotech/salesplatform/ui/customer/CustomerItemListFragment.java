@@ -1,11 +1,15 @@
 package com.ebaotech.salesplatform.ui.customer;
 
 import android.content.Context;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import com.ebaotech.salesplatform.R;
 import com.ebaotech.salesplatform.commons.util.Constants;
 import com.ebaotech.salesplatform.commons.util.DensityUtil;
@@ -14,15 +18,18 @@ import com.ebaotech.salesplatform.mvp.view.CustomerListView;
 import com.ebaotech.salesplatform.mvp.view.model.customer.CustomerListModelAdapter;
 import com.ebaotech.salesplatform.mvp.view.model.customer.CustomerListViewModel;
 
+import com.ebaotech.salesplatform.mvp.view.model.customer.CustomerSearchModel;
 import com.ebaotech.salesplatform.ui.AbstractActivity;
 import com.ebaotech.salesplatform.ui.AbstractFragment;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 /*
  *  Copyright (c) 2016.  ebaotech.com. All rights reserved.
@@ -41,10 +48,29 @@ public class CustomerItemListFragment extends AbstractFragment implements Custom
     private int columnCount;
     @ViewById(R.id.customer_list) View view;
 
+    @ViewById FloatingActionButton fab;
+
+    @ViewById
+    EditText searchName;
+
+    @ViewById
+    RadioGroup searchGender;
+
+    @ViewById
+    EditText searchAgeFrom;
+
+    @ViewById
+    EditText searchAgeTo;
+
+    @ViewById
+    EditText searchIdNumber;
+
     @Bean
     CustomerListPresenter customerListPresenter;
 
     private CustomerListModelAdapter customerListModelAdapter;
+
+    boolean hasSearched = false;
 
     /**
      * return a new instance
@@ -87,8 +113,13 @@ public class CustomerItemListFragment extends AbstractFragment implements Custom
     @Override
     public void onStart() {
         super.onStart();
-        customerListPresenter.start();
+        //customerListPresenter.start();
+        if (hasSearched) {
+            onBtnSearchClick();
+        }
     }
+
+
 
     @Override
     public void onStop() {
@@ -104,6 +135,38 @@ public class CustomerItemListFragment extends AbstractFragment implements Custom
         }
         RecyclerView recyclerView = (RecyclerView) view;
         recyclerView.setAdapter(customerListModelAdapter);
+        customerListModelAdapter.clear();
         customerListModelAdapter.addAll(customerListViewModels);
+    }
+
+    @Click(R.id.btnSearch)
+    void onBtnSearchClick() {
+        CustomerSearchModel customerSearchModel = new CustomerSearchModel();
+        customerSearchModel.setName(searchName.getText().toString());
+        customerSearchModel.setGender(((RadioButton) searchGender.findViewById(
+            searchGender.getCheckedRadioButtonId())).getText().toString());
+        if (StringUtils.isNotBlank(searchAgeFrom.getText().toString())) {
+            customerSearchModel.setAgeFrom(Integer.valueOf(searchAgeFrom.getText().toString()));
+        }
+        if (StringUtils.isNotBlank(searchAgeTo.getText().toString())) {
+            customerSearchModel.setAgeTo(Integer.valueOf(searchAgeTo.getText().toString()));
+        }
+        customerSearchModel.setIdNumber(searchIdNumber.getText().toString());
+        customerListPresenter.query(customerSearchModel);
+        hasSearched = true;
+    }
+
+    @Click(R.id.btnReset)
+    void onBtnResetClick(View view) {
+        searchName.setText("");
+        searchGender.check(searchGender.getChildAt(0).getId());
+        searchAgeFrom.setText("");
+        searchAgeTo.setText("");
+        searchIdNumber.setText("");
+    }
+
+    @Click(R.id.fab)
+    void onFabClick(View view) {
+        CustomerEditActivity.launch(this.getContext(), null);
     }
 }

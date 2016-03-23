@@ -3,11 +3,13 @@ package com.ebaotech.salesplatform.mvp.presenter;
 import com.ebaotech.salesplatform.core.mvp.Presenter;
 import com.ebaotech.salesplatform.core.mvp.View;
 import com.ebaotech.salesplatform.domain.Customer;
+import com.ebaotech.salesplatform.domain.CustomerSearch;
 import com.ebaotech.salesplatform.interactor.customer.GetCustomers;
 import com.ebaotech.salesplatform.interactor.customer.GetCustomersImpl;
 import com.ebaotech.salesplatform.mvp.view.CustomerListView;
 import com.ebaotech.salesplatform.mvp.view.model.customer.CustomerListViewModel;
 
+import com.ebaotech.salesplatform.mvp.view.model.customer.CustomerSearchModel;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.UiThread;
@@ -58,6 +60,23 @@ public class CustomerListPresenter extends BasePresenter implements Presenter {
     }
 
 
+    public void query(CustomerSearchModel customerSearchModel) {
+        customerListView.showLoading("Loading");
+
+        getCustomers.searchCustomers(convertCustomerSearchModelToDomain(customerSearchModel), new GetCustomers.Callback() {
+            @Override public void onCustomersLoaded(List<Customer> customerList) {
+                customerListView.setListViewModels(convertToMainModel(customerList));
+                customerListView.hideLoading(true);
+            }
+
+            @Override public void onError(Exception e) {
+                customerListView.showActionLabel("Error during fetching data!");
+                customerListView.hideLoading(false);
+            }
+        });
+    }
+
+
     @Override
     public void stop() {
         //TODO if something needed to
@@ -67,6 +86,16 @@ public class CustomerListPresenter extends BasePresenter implements Presenter {
     @UiThread
     public void onError(Exception exception) {
         customerListView.showActionLabel(exception.getMessage());
+    }
+
+    public CustomerSearch convertCustomerSearchModelToDomain(CustomerSearchModel customerSearchModel) {
+        CustomerSearch customerSearch = new CustomerSearch();
+        customerSearch.setName(customerSearchModel.getName());
+        customerSearch.setGender(customerSearchModel.getGender());
+        customerSearch.setAgeFrom(customerSearchModel.getAgeFrom());
+        customerSearch.setAgeTo(customerSearchModel.getAgeTo());
+        customerSearch.setIdNumber(customerSearchModel.getIdNumber());
+        return customerSearch;
     }
 
     public List<CustomerListViewModel> convertToMainModel(List<Customer> customerList) {
