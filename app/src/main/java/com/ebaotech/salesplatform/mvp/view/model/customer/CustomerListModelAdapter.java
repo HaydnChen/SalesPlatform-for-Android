@@ -15,6 +15,8 @@ import com.ebaotech.salesplatform.R;
 import com.ebaotech.salesplatform.commons.util.TextUtil;
 
 import com.ebaotech.salesplatform.ui.customer.CustomerEditActivity;
+import com.ebaotech.salesplatform.ui.quotation.QuotationEditActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +52,7 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
         holder.ageView.setText(model.getAge() + " years old");
         holder.nameView.setText(model.getName());
         holder.genderView.setText(model.getGender());
-        holder.detailView.setText(TextUtil.truncateIfLengthMoreThan(80, model.getDetails()));
+        holder.detailView.setText(TextUtil.truncateIfLengthMoreThan(50, model.getDetails()));
         holder.photoImage.setImageResource(R.drawable.ic_action_user);
 
         holder.customerCardView.setTag(model.getId());
@@ -69,6 +71,16 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
                 CustomerEditActivity.launch(context, customerId);
             }
         });
+        holder.newQuotation.setTag(model.getId());
+        holder.newQuotation.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                String customerId = (String) v.getTag();
+                Context context = v.getContext();
+                QuotationEditActivity.launch(context,null,customerId);
+            }
+        });
+
     }
 
     @Override
@@ -104,6 +116,8 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
         TextView genderView;
         TextView detailView;
         ImageView photoImage;
+        ImageView newQuotation;
+        ImageView newFNA;
 
         private CardView customerCardView;
 
@@ -120,6 +134,8 @@ public class CustomerListModelAdapter extends RecyclerView.Adapter<CustomerListM
             genderView = (TextView) itemView.findViewById(R.id.customer_gender);
             detailView = (TextView) itemView.findViewById(R.id.customer_detail);
             photoImage = (ImageView) itemView.findViewById(R.id.customer_photo);
+            newQuotation = (ImageView) itemView.findViewById(R.id.new_quotation);
+            newFNA = (ImageView) itemView.findViewById(R.id.new_fna);
 
         }
     }

@@ -1,19 +1,18 @@
 package com.ebaotech.salesplatform.interactor.customer;
 
-import android.content.Context;
 import com.ebaotech.salesplatform.core.bo.CustomerBo;
 import com.ebaotech.salesplatform.core.dao.CustomerDao;
 import com.ebaotech.salesplatform.domain.Customer;
+<<<<<<< HEAD
+=======
 import com.ebaotech.salesplatform.domain.CustomerSearch;
 import com.ebaotech.salesplatform.exception.GetCustomersException;
+>>>>>>> master
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
-import org.androidannotations.annotations.RootContext;
 import org.androidannotations.annotations.UiThread;
 
 import java.util.List;
@@ -38,7 +37,7 @@ public class GetCustomersImpl implements GetCustomers {
     }
 
     void buildDummyData() {
-        if (customerDao.queryForAll().isEmpty()) {
+        if (customerDao.queryForAll() == null || customerDao.queryForAll().isEmpty()) {
             for (Customer customer : DummyContent.ITEMS) {
                 CustomerBo customerBo = new CustomerBo();
                 customerBo.setName(customer.getName());

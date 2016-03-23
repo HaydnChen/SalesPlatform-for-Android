@@ -23,12 +23,14 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="16dp"
-                android:contentDescription="person photo" />
+                android:contentDescription="person photo"
+                android:src="@drawable/ic_action_user"/>
 
             <TextView
                 android:id="@+id/customer_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:layout_alignParentLeft="false"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/customer_photo"
@@ -36,6 +38,22 @@
                 android:textStyle="bold"
                 android:text="Leaner"/>
 
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:id="@+id/new_quotation"
+                android:src="@drawable/ic_action_calculator"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:id="@+id/new_fna"
+                android:src="@drawable/ic_action_folder_open"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@id/new_quotation" />
             <TextView
                 android:id="@+id/customer_age"
                 android:layout_width="wrap_content"
