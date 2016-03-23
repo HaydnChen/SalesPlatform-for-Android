@@ -9,6 +9,7 @@ import java.util.List;
 public interface GetCustomer {
   void getCustomer(String customerId, Callback callback);
   void saveCustomer(Customer customer);
+  void deleteCustomer(String customerId);
 
   interface Callback {
     void onCustomerLoaded(Customer customer);

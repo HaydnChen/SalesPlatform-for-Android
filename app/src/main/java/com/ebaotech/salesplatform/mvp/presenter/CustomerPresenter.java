@@ -9,6 +9,7 @@ import com.ebaotech.salesplatform.interactor.customer.GetCustomer;
 import com.ebaotech.salesplatform.interactor.customer.GetCustomerImpl;
 import com.ebaotech.salesplatform.mvp.view.CustomerView;
 import com.ebaotech.salesplatform.mvp.view.model.customer.AddressViewModel;
+import com.ebaotech.salesplatform.mvp.view.model.customer.CustomerSearchModel;
 import com.ebaotech.salesplatform.mvp.view.model.customer.CustomerViewModel;
 import com.ebaotech.salesplatform.mvp.view.model.customer.FamilyViewModel;
 
@@ -66,7 +67,6 @@ public class CustomerPresenter extends BasePresenter implements Presenter {
         );
     }
 
-
     @Override
     public void stop() {
         //TODO if something needed to
@@ -75,6 +75,10 @@ public class CustomerPresenter extends BasePresenter implements Presenter {
     public void save(CustomerViewModel customerViewModel) {
         Customer customer = convertCustomerViewModelToDomain(customerViewModel);
         getCustomer.saveCustomer(customer);
+    }
+
+    public void delete(String customerId) {
+        getCustomer.deleteCustomer(customerId);
     }
 
     @Override

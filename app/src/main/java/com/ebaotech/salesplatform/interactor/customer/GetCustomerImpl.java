@@ -80,6 +80,14 @@ public class GetCustomerImpl implements GetCustomer {
             }
             customerBo.getAddresses().clear();
         }
+        if (customerBo.getFamilyMembers()!=null) {
+            for (FamilyMemberBo familyMemberBo : customerBo.getFamilyMembers()){
+                familyMemberBo.setCustomer(null);
+                familyMemberDao.delete(familyMemberBo);
+            }
+            customerBo.getFamilyMembers().clear();
+        }
+        customerDao.createOrUpdate(customerBo);
         ForeignCollection<AddressBo> addressBos = customerDao.getEmptyForeignCollection("addresses");
         customerBo.setAddresses(addressBos);
         if (customer.getAddresses() != null) {
@@ -88,13 +96,6 @@ public class GetCustomerImpl implements GetCustomer {
                 addressBo.setCustomer(customerBo);
                 customerBo.getAddresses().add(addressBo);
             }
-        }
-        if (customerBo.getFamilyMembers()!=null) {
-            for (FamilyMemberBo familyMemberBo : customerBo.getFamilyMembers()){
-                familyMemberBo.setCustomer(null);
-                familyMemberDao.delete(familyMemberBo);
-            }
-            customerBo.getFamilyMembers().clear();
         }
         ForeignCollection<FamilyMemberBo> familyMemberBos = customerDao.getEmptyForeignCollection("familyMembers");
         customerBo.setFamilyMembers(familyMemberBos);
@@ -106,6 +107,28 @@ public class GetCustomerImpl implements GetCustomer {
             }
         }
         customerDao.createOrUpdate(customerBo);
+    }
+
+    @Override
+    public void deleteCustomer(String customerId) {
+        if (StringUtils.isNotBlank(customerId)) {
+            CustomerBo customerBo = customerDao.queryForId(Integer.valueOf(customerId));
+            if (customerBo.getAddresses() != null) {
+                for (AddressBo addressBo : customerBo.getAddresses()) {
+                    addressBo.setCustomer(null);
+                    addressDao.delete(addressBo);
+                }
+                customerBo.getAddresses().clear();
+            }
+            if (customerBo.getFamilyMembers()!=null) {
+                for (FamilyMemberBo familyMemberBo : customerBo.getFamilyMembers()){
+                    familyMemberBo.setCustomer(null);
+                    familyMemberDao.delete(familyMemberBo);
+                }
+                customerBo.getFamilyMembers().clear();
+            }
+            customerDao.delete(customerBo);
+        }
     }
 
     @UiThread

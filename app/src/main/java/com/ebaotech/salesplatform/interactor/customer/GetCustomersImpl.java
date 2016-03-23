@@ -3,6 +3,11 @@ package com.ebaotech.salesplatform.interactor.customer;
 import com.ebaotech.salesplatform.core.bo.CustomerBo;
 import com.ebaotech.salesplatform.core.dao.CustomerDao;
 import com.ebaotech.salesplatform.domain.Customer;
+<<<<<<< HEAD
+=======
+import com.ebaotech.salesplatform.domain.CustomerSearch;
+import com.ebaotech.salesplatform.exception.GetCustomersException;
+>>>>>>> master
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
@@ -51,6 +56,17 @@ public class GetCustomersImpl implements GetCustomers {
         this.callback = callback;
         // TODO: 3/2/16 10:17 PM  load data from db or cache
         List<Customer> customerList = CustomerMapper.convertCustomerListToDomain(customerDao.queryForAll());
+        onItemsLoaded(customerList);
+    }
+
+    @Override
+    @Background
+    @DebugLog
+    public void searchCustomers(CustomerSearch customerSearch, Callback callback) {
+        this.callback = callback;
+        List<Customer> customerList = CustomerMapper.convertCustomerListToDomain(
+            customerDao.queryByCriteria(customerSearch.getName(),customerSearch.getGender(),
+                customerSearch.getAgeFrom(),customerSearch.getAgeTo(),customerSearch.getIdNumber()));
         onItemsLoaded(customerList);
     }
 
