@@ -22,7 +22,7 @@ import com.ebaotech.salesplatform.R;
 import com.ebaotech.salesplatform.mvp.view.HomeView;
 import com.ebaotech.salesplatform.ui.home.TabSectionContent;
 import com.ebaotech.salesplatform.ui.prefer.SettingsActivity_;
-import com.ebaotech.salesplatform.ui.quotation.QuotationEditListActivity;
+import com.ebaotech.salesplatform.ui.quotation.QuotationEditActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -65,7 +65,7 @@ public class HomeActivity extends AbstractActivity
                                 .setAction("Action", null).show();
                         break;
                     case 3: // quotation
-                        startActivityForResult(new Intent(HomeActivity.this, QuotationEditListActivity.class), 0);
+                        startActivityForResult(new Intent(HomeActivity.this, QuotationEditActivity_.class), 0);
                         break;
                     default:
                         Snackbar.make(view, "Replace with your own action: position " + tabLayout.getSelectedTabPosition(), Snackbar.LENGTH_LONG)

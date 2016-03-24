@@ -8,13 +8,13 @@
     <TwoLineListItem
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@color/mainBackground"></TwoLineListItem>
+        android:background="@color/mainBackground"/>
 
 
     <TwoLineListItem
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/listLine"></TwoLineListItem>
+        android:background="@color/listLine"/>
 
     <LinearLayout
         android:layout_width="match_parent"

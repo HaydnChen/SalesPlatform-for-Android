@@ -90,8 +90,9 @@ public class CustomerItemListFragment extends AbstractFragment implements Custom
 
     private void setupCustomerCardView() {
         int deviceWidthInPixes = DensityUtil.getDeviceWidthInPixes(this.getContext());
-        //contact card width is around 600
-        int columnCount = deviceWidthInPixes / Constants.Screen.CARD_WIDTH_IN_PIXES;
+        float deviceDP = DensityUtil.convertPixelsToDp(deviceWidthInPixes, this.getContext());
+        //contact card width is around 580
+        int columnCount = (int) (deviceDP / Constants.Screen.CARD_WIDTH_IN_PIXES) + 1;
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();

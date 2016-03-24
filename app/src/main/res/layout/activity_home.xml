@@ -27,8 +27,9 @@
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabIndicatorHeight="5dp"
-                app:tabMode="scrollable" />
+                app:tabIndicatorHeight="4dp"
+                app:tabMode="scrollable"
+                android:textStyle="bold"/>
 
         </android.support.design.widget.AppBarLayout>
 
@@ -37,7 +38,8 @@
             android:id="@+id/my_view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            />
 
 
         <android.support.design.widget.FloatingActionButton

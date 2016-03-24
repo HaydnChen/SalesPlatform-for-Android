@@ -13,7 +13,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
+        android:theme="@style/MyMaterialTheme"
         tools:replace="icon, name" >
         <activity
             android:name=".ui.HomeActivity_"
@@ -42,15 +42,24 @@
                 android:value=".ui.quotation.QuotationEditListActivity" />
         </activity>
         <activity
-            android:name=".ui.quotation.QuotationEditDetailActivity"
+            android:name=".ui.quotation.QuotationEditActivity_"
             android:label="@string/title_quotation_edit_detail"
-            android:parentActivityName=".ui.quotation.QuotationEditListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".ui.HomeActivity_"
+            android:theme="@style/MyMaterialTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.quotation.QuotationEditListActivity" />
+                android:value=".ui.quotation.QuotationEditActivity_" />
         </activity>
 
+        <activity
+            android:name=".ui.quotation.QuotationEditProductActivity_"
+            android:label="@string/title_customer_basic"
+            android:parentActivityName=".ui.quotation.QuotationEditActivity_"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ebaotech.salesplatform.ui.quotation.QuotationEditProductActivity_" />
+        </activity>
         <activity
             android:name=".ui.customer.CustomerEditActivity_"
             android:label="@string/title_customer_list"

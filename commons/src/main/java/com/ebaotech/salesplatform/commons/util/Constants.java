@@ -28,7 +28,8 @@ public class Constants {
     }
 
     public static class Screen {
-        public static final int CARD_WIDTH_IN_PIXES = 600;
+        public static final int CARD_WIDTH_IN_PIXES = 580;
+        public static final int CARD_WIDTH_IN_DP = 580;
     }
 
 }

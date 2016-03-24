@@ -42,21 +42,18 @@ public class CustomerListPresenter extends BasePresenter implements Presenter {
 
         getCustomers.getCustomers(new GetCustomers.Callback() {
 
-                                      @Override
-                                      public void onCustomersLoaded(List<Customer> customerList) {
-                                          customerListView.setListViewModels(convertToMainModel(customerList));
-                                          customerListView.hideLoading(true);
-                                      }
+            @Override
+            public void onCustomersLoaded(List<Customer> customerList) {
+                customerListView.setListViewModels(convertToMainModel(customerList));
+                customerListView.hideLoading(true);
+            }
 
-                                      @Override
-                                      public void onError(Exception e) {
-                                          customerListView.showActionLabel("Error during fetching data!");
-                                          customerListView.hideLoading(false);
-                                      }
-                                  }
-
-
-        );
+            @Override
+            public void onError(Exception e) {
+                customerListView.showActionLabel("Error during fetching data!");
+                customerListView.hideLoading(false);
+            }
+        });
     }
 
 

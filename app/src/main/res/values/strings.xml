@@ -85,7 +85,7 @@
     <string name="title_quotation_edit_list">Quotation Edit</string>
     <string name="title_quotation_edit_detail">Quotation Edit Detail</string>
 
-    <string name="quotation_edit__basic_info_tab">Basic Info</string>
+    <string name="quotation_edit__basic_info_tab">Customer Info</string>
     <string name="quotation_edit__quote_tab">Quote</string>
     <string name="quotation_edit__pdf_tab">PDF Generation</string>
 
