@@ -11,8 +11,6 @@ import com.ebaotech.salesplatform.domain.Customer;
 import com.ebaotech.salesplatform.domain.FamilyMember;
 import com.j256.ormlite.dao.ForeignCollection;
 import hugo.weaving.DebugLog;
-import java.util.List;
-import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
@@ -25,8 +23,9 @@ import org.apache.commons.lang3.StringUtils;
  */
 @EBean
 public class GetCustomerImpl implements GetCustomer {
-
-    private Callback callback;
+    private LoadCallback loadCallback;
+    private SaveCallback saveCallback;
+    private DeleteCallback deleteCallback;
 
     @Bean
     protected CustomerDao customerDao;
@@ -37,12 +36,29 @@ public class GetCustomerImpl implements GetCustomer {
     @Bean
     protected FamilyMemberDao familyMemberDao;
 
-    @Override
+    @UiThread
+    @DebugLog
+    public void onItemLoaded(Customer customer) {
+        loadCallback.onCustomerLoaded(customer);
+    }
+
+    @UiThread
+    @DebugLog
+    public void onItemSaved(Customer customer) {
+        saveCallback.onCustomerSaved(customer);
+    }
+
+    @UiThread
+    @DebugLog
+    public void onItemDelete() {
+        deleteCallback.onCustomerDeleted();
+    }
+
     @Background
     @DebugLog
-    public void getCustomer(String customerId, Callback callback) {
-        this.callback = callback;
-        // TODO: 3/2/16 10:17 PM  load data from db or cache
+    @Override
+    public void getCustomer(String customerId, LoadCallback loadCallback) {
+        this.loadCallback = loadCallback;
         Customer customer;
         if (StringUtils.isNotBlank(customerId)) {
             customer = CustomerMapper.convertCustomerToDomain(customerDao.queryForId(Integer.valueOf(customerId)));
@@ -52,7 +68,11 @@ public class GetCustomerImpl implements GetCustomer {
         onItemLoaded(customer);
     }
 
-    @Override public void saveCustomer(Customer customer) {
+    @Background
+    @DebugLog
+    @Override
+    public void saveCustomer(Customer customer, SaveCallback saveCallback) {
+        this.saveCallback = saveCallback;
         CustomerBo customerBo;
         if (StringUtils.isNotBlank(customer.getId())) {
             customerBo = customerDao.queryForId(Integer.valueOf(customer.getId()));
@@ -107,10 +127,14 @@ public class GetCustomerImpl implements GetCustomer {
             }
         }
         customerDao.createOrUpdate(customerBo);
+        onItemSaved(customer);
     }
 
+    @Background
+    @DebugLog
     @Override
-    public void deleteCustomer(String customerId) {
+    public void deleteCustomer(String customerId, DeleteCallback deleteCallback) {
+        this.deleteCallback = deleteCallback;
         if (StringUtils.isNotBlank(customerId)) {
             CustomerBo customerBo = customerDao.queryForId(Integer.valueOf(customerId));
             if (customerBo.getAddresses() != null) {
@@ -129,17 +153,6 @@ public class GetCustomerImpl implements GetCustomer {
             }
             customerDao.delete(customerBo);
         }
+        onItemDelete();
     }
-
-    @UiThread
-    @DebugLog
-    public void onItemLoaded(Customer customer) {
-        callback.onCustomerLoaded(customer);
-    }
-
-    @UiThread
-    public void onError(Exception e) {
-        callback.onError(e);
-    }
-
 }

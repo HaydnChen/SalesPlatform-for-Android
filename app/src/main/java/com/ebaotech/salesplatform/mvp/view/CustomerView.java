@@ -4,8 +4,6 @@ import com.ebaotech.salesplatform.core.mvp.View;
 import com.ebaotech.salesplatform.mvp.view.model.customer.CustomerViewModel;
 
 
-public interface CustomerView extends View {
-
-    void setViewModel(CustomerViewModel customerViewModel);
+public interface CustomerView extends View<CustomerViewModel> {
 
 }

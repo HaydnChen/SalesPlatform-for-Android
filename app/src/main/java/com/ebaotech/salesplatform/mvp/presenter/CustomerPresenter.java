@@ -26,7 +26,7 @@ import java.util.List;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class CustomerPresenter extends BasePresenter implements Presenter {
+public class CustomerPresenter extends BasePresenter implements Presenter<CustomerViewModel, String> {
 
     private CustomerView customerView;
 
@@ -39,46 +39,55 @@ public class CustomerPresenter extends BasePresenter implements Presenter {
         this.customerView = (CustomerView) view;
     }
 
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
     @Override
-    public void start() {
+    public void load(String customerId) {
         customerView.showLoading("Loading");
 
-        getCustomer.getCustomer(customerId, new GetCustomer.Callback() {
-
-                @Override public void onCustomerLoaded(Customer customer) {
-                    customerView.setViewModel(convertCustomerToModel(customer));
-                    customerView.hideLoading(true);
-                }
-
-                @Override public void onError(Exception e) {
-                    customerView.showActionLabel("Error during fetching data!");
-                    customerView.hideLoading(false);
-                }
+        getCustomer.getCustomer(customerId, new GetCustomer.LoadCallback() {
+            @Override public void onCustomerLoaded(Customer customer) {
+                customerView.onViewModelLoaded(convertCustomerToModel(customer));
+                customerView.hideLoading(true);
             }
 
-        );
+            @Override public void onError(Exception e) {
+                customerView.showActionLabel("Error during fetching data!");
+                customerView.hideLoading(false);
+            }
+        });
     }
 
     @Override
-    public void stop() {
-        //TODO if something needed to
-    }
-
     public void save(CustomerViewModel customerViewModel) {
+        customerView.showLoading("Loading");
         Customer customer = convertCustomerViewModelToDomain(customerViewModel);
-        getCustomer.saveCustomer(customer);
+        getCustomer.saveCustomer(customer, new GetCustomer.SaveCallback() {
+
+            @Override public void onCustomerSaved(Customer customer) {
+                customerView.onViewModelSaved(convertCustomerToModel(customer));
+                customerView.hideLoading(true);
+            }
+
+            @Override public void onError(Exception e) {
+                customerView.showActionLabel("Error during saving data!");
+                customerView.hideLoading(false);
+            }
+        });
     }
 
     public void delete(String customerId) {
-        getCustomer.deleteCustomer(customerId);
+        customerView.showLoading("Loading");
+        getCustomer.deleteCustomer(customerId, new GetCustomer.DeleteCallback() {
+
+            @Override public void onCustomerDeleted() {
+                customerView.onViewModelDeleted();
+                customerView.hideLoading(true);
+            }
+
+            @Override public void onError(Exception e) {
+                customerView.showActionLabel("Error during deleting data!");
+                customerView.hideLoading(false);
+            }
+        });
     }
 
     @Override

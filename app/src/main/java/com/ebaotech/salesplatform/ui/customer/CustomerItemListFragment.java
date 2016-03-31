@@ -40,7 +40,7 @@ import org.apache.commons.lang3.StringUtils;
  * A fragment representing a list of Items.
  */
 @EFragment(R.layout.fragment_customer_list)
-public class CustomerItemListFragment extends AbstractFragment implements CustomerListView {
+public class CustomerItemListFragment extends AbstractFragment<List<CustomerListViewModel>> implements CustomerListView {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -114,23 +114,13 @@ public class CustomerItemListFragment extends AbstractFragment implements Custom
     @Override
     public void onStart() {
         super.onStart();
-        //customerListPresenter.start();
         if (hasSearched) {
             onBtnSearchClick();
         }
     }
 
-
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        customerListPresenter.stop();
-    }
-
-    @Override
     @UiThread
-    public void setListViewModels(List<CustomerListViewModel> customerListViewModels) {
+    @Override public void onViewModelLoaded(List<CustomerListViewModel> customerListViewModels) {
         if (customerListModelAdapter == null) {
             customerListModelAdapter = new CustomerListModelAdapter();
         }
@@ -153,7 +143,7 @@ public class CustomerItemListFragment extends AbstractFragment implements Custom
             customerSearchModel.setAgeTo(Integer.valueOf(searchAgeTo.getText().toString()));
         }
         customerSearchModel.setIdNumber(searchIdNumber.getText().toString());
-        customerListPresenter.query(customerSearchModel);
+        customerListPresenter.load(customerSearchModel);
         hasSearched = true;
     }
 

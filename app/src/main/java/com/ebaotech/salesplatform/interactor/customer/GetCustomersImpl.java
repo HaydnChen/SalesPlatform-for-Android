@@ -48,21 +48,16 @@ public class GetCustomersImpl implements GetCustomers {
     @Override
     @Background
     @DebugLog
-    public void getCustomers(Callback callback) {
-        this.callback = callback;
-        // TODO: 3/2/16 10:17 PM  load data from db or cache
-        List<Customer> customerList = CustomerMapper.convertCustomerListToDomain(customerDao.queryForAll());
-        onItemsLoaded(customerList);
-    }
-
-    @Override
-    @Background
-    @DebugLog
     public void searchCustomers(CustomerSearch customerSearch, Callback callback) {
         this.callback = callback;
-        List<Customer> customerList = CustomerMapper.convertCustomerListToDomain(
-            customerDao.queryByCriteria(customerSearch.getName(),customerSearch.getGender(),
-                customerSearch.getAgeFrom(),customerSearch.getAgeTo(),customerSearch.getIdNumber()));
+        List<Customer> customerList;
+        if (customerSearch == null) {
+            customerList = CustomerMapper.convertCustomerListToDomain(customerDao.queryForAll());
+        } else {
+            customerList = CustomerMapper.convertCustomerListToDomain(
+                customerDao.queryByCriteria(customerSearch.getName(), customerSearch.getGender(),
+                    customerSearch.getAgeFrom(), customerSearch.getAgeTo(), customerSearch.getIdNumber()));
+        }
         onItemsLoaded(customerList);
     }
 

@@ -42,7 +42,7 @@ import org.androidannotations.annotations.ViewById;
  */
 @EActivity(R.layout.activity_customer_app_bar)
 @OptionsMenu(R.menu.menu_customer_edit)
-public class CustomerEditActivity extends AbstractActivity
+public class CustomerEditActivity extends AbstractActivity<CustomerViewModel>
     implements CustomerEditLeftPaneFragment.Callbacks,CustomerView {
 
   private static final String INTENT_EXTRA_PARAM_CUSTOMER_ID = "CustomerEditActivity:customerId";
@@ -155,24 +155,7 @@ public class CustomerEditActivity extends AbstractActivity
   @Override
   public void onStart() {
     super.onStart();
-    customerPresenter.setCustomerId(customerId);
-    customerPresenter.start();
-  }
-
-  @Override
-  public void onStop() {
-    super.onStop();
-    customerPresenter.stop();
-  }
-
-  @Override
-  @UiThread
-  public void setViewModel(CustomerViewModel customerViewModel) {
-    this.customerViewModel = customerViewModel;
-    for (Fragment fragment : frags) {
-      ((CustomerFragment) fragment).setCustomerViewModel(customerViewModel);
-    }
-    onItemSelected(0);
+    customerPresenter.load(customerId);
   }
 
   @OptionsItem(R.id.action_save)
@@ -184,7 +167,6 @@ public class CustomerEditActivity extends AbstractActivity
       }
       if (result) {
         customerPresenter.save(customerViewModel);
-        this.finish();
       }
     }
     return result;
@@ -204,5 +186,24 @@ public class CustomerEditActivity extends AbstractActivity
           }})
         .setNegativeButton(android.R.string.no, null).show();
     return true;
+  }
+
+  @UiThread
+  @Override public void onViewModelLoaded(CustomerViewModel customerViewModel) {
+    this.customerViewModel = customerViewModel;
+    for (Fragment fragment : frags) {
+      ((CustomerFragment) fragment).setCustomerViewModel(customerViewModel);
+    }
+    onItemSelected(0);
+  }
+
+  @UiThread
+  @Override public void onViewModelSaved(CustomerViewModel customerViewModel) {
+    this.finish();
+  }
+
+  @UiThread
+  @Override public void onViewModelDeleted() {
+    this.finish();
   }
 }

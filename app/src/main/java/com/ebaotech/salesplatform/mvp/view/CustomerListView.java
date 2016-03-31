@@ -8,8 +8,6 @@ import java.util.List;
 /**
  * Created by radicsrichard on 15. 05. 13..
  */
-public interface CustomerListView extends View {
-
-    void setListViewModels(List<CustomerListViewModel> customerListViewModels);
+public interface CustomerListView extends View<List<CustomerListViewModel>> {
 
 }

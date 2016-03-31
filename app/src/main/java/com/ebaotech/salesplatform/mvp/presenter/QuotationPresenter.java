@@ -6,6 +6,7 @@ import com.ebaotech.salesplatform.domain.Quotation;
 import com.ebaotech.salesplatform.interactor.quotation.GetQuotation;
 import com.ebaotech.salesplatform.interactor.quotation.GetQuotationImpl;
 import com.ebaotech.salesplatform.mvp.view.QuotationView;
+import com.ebaotech.salesplatform.mvp.view.model.quotation.QuotationSearchModel;
 import com.ebaotech.salesplatform.mvp.view.model.quotation.QuotationViewModel;
 
 import org.androidannotations.annotations.Bean;
@@ -18,13 +19,9 @@ import org.androidannotations.annotations.UiThread;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class QuotationPresenter extends BasePresenter implements Presenter {
+public class QuotationPresenter extends BasePresenter implements Presenter<QuotationViewModel, QuotationSearchModel> {
 
     private QuotationView quotationView;
-
-    private String quotationId;
-
-    private String policyHolderId;
 
     @Bean(GetQuotationImpl.class)
     GetQuotation getQuotation;
@@ -34,49 +31,30 @@ public class QuotationPresenter extends BasePresenter implements Presenter {
         this.quotationView = (QuotationView) view;
     }
 
-    public String getQuotationId() {
-        return quotationId;
-    }
-
-    public void setQuotationId(String quotationId) {
-        this.quotationId = quotationId;
-    }
-
-
-    public String getPolicyHolderId() {
-        return policyHolderId;
-    }
-
-    public void setPolicyHolderId(String policyHolderId) {
-        this.policyHolderId = policyHolderId;
-    }
-
-    @Override
-    public void start() {
+    @Override public void load(QuotationSearchModel quotationSearchModel) {
         quotationView.showLoading("Loading");
 
-        if (quotationId != null) {  //load quotation
-            getQuotation.getQuotation(quotationId, new GetQuotation.Callback() {
+        if (quotationSearchModel.getQuotationId() != null) {  //load quotation
+            getQuotation.getQuotation(quotationSearchModel.getQuotationId(),
+                new GetQuotation.Callback() {
 
-                @Override
-                public void onQuotationLoaded(Quotation quotation) {
-                    quotationView.setViewModel(convertQuotationToViewModel(quotation));
-                    quotationView.hideLoading(true);
-                }
+                    @Override public void onQuotationLoaded(Quotation quotation) {
+                        quotationView.onViewModelLoaded(convertQuotationToViewModel(quotation));
+                        quotationView.hideLoading(true);
+                    }
 
-                @Override
-                public void onError(Exception e) {
-                    quotationView.showActionLabel("Error during fetching quotation data!");
-                    quotationView.hideLoading(false);
-                }
+                    @Override public void onError(Exception e) {
+                        quotationView.showActionLabel("Error during fetching quotation data!");
+                        quotationView.hideLoading(false);
+                    }
             });
 
-        } else if (null != policyHolderId) {  // new quotation with this customer
-            getQuotation.newQuotation(policyHolderId, new GetQuotation.Callback() {
+        } else if (null != quotationSearchModel.getPolicyHolderId()) {  // new quotation with this customer
+            getQuotation.newQuotation(quotationSearchModel.getPolicyHolderId(), new GetQuotation.Callback() {
 
                 @Override
                 public void onQuotationLoaded(Quotation quotation) {
-                    quotationView.setViewModel(convertQuotationToViewModel(quotation));
+                    quotationView.onViewModelLoaded(convertQuotationToViewModel(quotation));
                     quotationView.hideLoading(true);
                 }
 
@@ -92,9 +70,12 @@ public class QuotationPresenter extends BasePresenter implements Presenter {
         }
     }
 
-    @Override
-    public void stop() {
-        //TODO if something needed to
+    @Override public void save(QuotationViewModel viewModel) {
+
+    }
+
+    @Override public void delete(QuotationSearchModel searchModel) {
+
     }
 
     @Override

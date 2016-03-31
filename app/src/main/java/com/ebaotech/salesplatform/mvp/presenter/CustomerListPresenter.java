@@ -23,7 +23,7 @@ import java.util.List;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class CustomerListPresenter extends BasePresenter implements Presenter {
+public class CustomerListPresenter extends BasePresenter implements Presenter<List<CustomerListViewModel>,CustomerSearchModel> {
 
     private CustomerListView customerListView;
 
@@ -35,48 +35,30 @@ public class CustomerListPresenter extends BasePresenter implements Presenter {
         this.customerListView = (CustomerListView) view;
     }
 
-
-    @Override
-    public void start() {
+    @Override public void load(CustomerSearchModel searchModel) {
         customerListView.showLoading("Loading");
 
-        getCustomers.getCustomers(new GetCustomers.Callback() {
+        getCustomers.searchCustomers(convertCustomerSearchModelToDomain(searchModel),
+            new GetCustomers.Callback() {
 
-            @Override
-            public void onCustomersLoaded(List<Customer> customerList) {
-                customerListView.setListViewModels(convertToMainModel(customerList));
-                customerListView.hideLoading(true);
-            }
+                @Override public void onCustomersLoaded(List<Customer> customerList) {
+                    customerListView.onViewModelLoaded(convertToMainModel(customerList));
+                    customerListView.hideLoading(true);
+                }
 
-            @Override
-            public void onError(Exception e) {
-                customerListView.showActionLabel("Error during fetching data!");
-                customerListView.hideLoading(false);
-            }
+                @Override public void onError(Exception e) {
+                    customerListView.showActionLabel("Error during fetching data!");
+                    customerListView.hideLoading(false);
+                }
         });
     }
 
+    @Override public void save(List<CustomerListViewModel> viewModel) {
 
-    public void query(CustomerSearchModel customerSearchModel) {
-        customerListView.showLoading("Loading");
-
-        getCustomers.searchCustomers(convertCustomerSearchModelToDomain(customerSearchModel), new GetCustomers.Callback() {
-            @Override public void onCustomersLoaded(List<Customer> customerList) {
-                customerListView.setListViewModels(convertToMainModel(customerList));
-                customerListView.hideLoading(true);
-            }
-
-            @Override public void onError(Exception e) {
-                customerListView.showActionLabel("Error during fetching data!");
-                customerListView.hideLoading(false);
-            }
-        });
     }
 
+    @Override public void delete(CustomerSearchModel searchModel) {
 
-    @Override
-    public void stop() {
-        //TODO if something needed to
     }
 
     @Override

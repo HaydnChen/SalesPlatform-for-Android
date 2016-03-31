@@ -11,7 +11,6 @@ import java.util.List;
  * Author: Zhu Liliang; Date:3/2/16.
  */
 public interface GetCustomers {
-    void getCustomers(Callback callback);
     void searchCustomers(CustomerSearch customerSearch, Callback callback);
 
     interface Callback {

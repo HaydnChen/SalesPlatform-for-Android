@@ -8,7 +8,7 @@ import org.androidannotations.annotations.EActivity;
  * Created by haydn.chen on 3/8/2016.
  */
 @EActivity
-public class AbstractActivity extends CleanActivity implements View {
+public abstract class AbstractActivity<T> extends CleanActivity implements View<T> {
   @Override
   public void showLoading(String message) {
     progress.showLoading(this, message);
@@ -27,5 +27,17 @@ public class AbstractActivity extends CleanActivity implements View {
   @Override
   public void hideActionLabel() {
 
+  }
+
+  @Override public void onViewModelLoaded(T viewModel) {
+    // please overwrite in sub class if required
+  }
+
+  @Override public void onViewModelSaved(T viewModel) {
+    // please overwrite in sub class if required
+  }
+
+  @Override public void onViewModelDeleted() {
+    // please overwrite in sub class if required
   }
 }

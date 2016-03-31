@@ -11,6 +11,7 @@ import com.ebaotech.salesplatform.R;
 import com.ebaotech.salesplatform.mvp.presenter.CustomerPresenter;
 import com.ebaotech.salesplatform.mvp.presenter.QuotationPresenter;
 import com.ebaotech.salesplatform.mvp.view.QuotationView;
+import com.ebaotech.salesplatform.mvp.view.model.quotation.QuotationSearchModel;
 import com.ebaotech.salesplatform.mvp.view.model.quotation.QuotationViewModel;
 import com.ebaotech.salesplatform.ui.AbstractActivity;
 import com.ebaotech.salesplatform.ui.customer.CustomerBasicActivity;
@@ -44,7 +45,7 @@ import org.androidannotations.annotations.ViewById;
  * to listen for item selections.
  */
 @EActivity(R.layout.activity_quotation_edit_list)
-public class QuotationEditActivity extends AbstractActivity
+public class QuotationEditActivity extends AbstractActivity<QuotationViewModel>
         implements QuotationEditLefPaneFragment.Callbacks, QuotationView {
 
     private static final String INTENT_EXTRA_PARAM_QUOTATION_ID = "QuotationEditActivity:quotationId";
@@ -170,24 +171,15 @@ public class QuotationEditActivity extends AbstractActivity
     @Override
     public void onStart() {
         super.onStart();
-        if (null != quotationId) {   // load Quotation and show
-            quotationPresenter.setQuotationId(quotationId);
-        } else if (null != policyHolderId) { //new quotation with this policy holder
-            quotationPresenter.setPolicyHolderId(policyHolderId);
-        }
-        quotationPresenter.start();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        quotationPresenter.setQuotationId(quotationId);
-        quotationPresenter.stop();
+        QuotationSearchModel searchModel = new QuotationSearchModel();
+        searchModel.setQuotationId(quotationId);
+        searchModel.setPolicyHolderId(policyHolderId);
+        quotationPresenter.load(searchModel);
     }
 
     @Override
     @UiThread
-    public void setViewModel(QuotationViewModel quotationViewModel) {
+    public void onViewModelLoaded(QuotationViewModel quotationViewModel) {
         this.quotationViewModel = quotationViewModel;
 
         ((CustomerBasicFragment) frags[0]).setCustomerViewModel(quotationViewModel.getPolicyHolder());

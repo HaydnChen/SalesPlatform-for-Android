@@ -8,7 +8,7 @@ import org.androidannotations.annotations.EFragment;
  * Created by haydn.chen on 3/8/2016.
  */
 @EFragment
-public class AbstractFragment extends Fragment implements View {
+public class AbstractFragment<T> extends Fragment implements View<T> {
 
   protected AbstractActivity containerActivity;
 
@@ -42,5 +42,17 @@ public class AbstractFragment extends Fragment implements View {
     if (containerActivity !=null) {
       this.containerActivity.hideActionLabel();
     }
+  }
+
+  @Override public void onViewModelLoaded(T viewModel) {
+    // please overwrite in sub class if required
+  }
+
+  @Override public void onViewModelSaved(T viewModel) {
+    // please overwrite in sub class if required
+  }
+
+  @Override public void onViewModelDeleted() {
+    // please overwrite in sub class if required
   }
 }
