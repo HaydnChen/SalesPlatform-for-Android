@@ -1,6 +1,8 @@
 package com.ebaotech.salesplatform.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -18,13 +20,21 @@ import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
 
+import android.webkit.JavascriptInterface;
+import android.webkit.WebView;
+import android.widget.Toast;
 import com.ebaotech.salesplatform.R;
 import com.ebaotech.salesplatform.mvp.view.HomeView;
 import com.ebaotech.salesplatform.ui.home.TabSectionContent;
 import com.ebaotech.salesplatform.ui.prefer.SettingsActivity_;
 import com.ebaotech.salesplatform.ui.quotation.QuotationEditActivity_;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
@@ -54,26 +64,126 @@ public class HomeActivity extends AbstractActivity
         setupTabBar();
 
         setupNav();
+    }
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = tabLayout.getSelectedTabPosition();
-                switch (position) {
-                    case 1:  //customer
-                        Snackbar.make(view, "add customer: position " + tabLayout.getSelectedTabPosition(), Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                        break;
-                    case 3: // quotation
-                        startActivityForResult(new Intent(HomeActivity.this, QuotationEditActivity_.class), 0);
-                        break;
-                    default:
-                        Snackbar.make(view, "Replace with your own action: position " + tabLayout.getSelectedTabPosition(), Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                        break;
+    @Click(R.id.home_fab)
+    void onFabClick(View view) {
+        int position = tabLayout.getSelectedTabPosition();
+        switch (position) {
+            case 1:  //customer
+                Snackbar.make(view, "add customer: position " + tabLayout.getSelectedTabPosition(), Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+                break;
+            case 3: // quotation
+                startActivityForResult(new Intent(HomeActivity.this, QuotationEditActivity_.class), 0);
+                break;
+            default:
+                Snackbar.make(view, "Replace with your own action: position " + tabLayout.getSelectedTabPosition(), Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+                break;
+        }
+        testRunProductEngine();
+    }
+
+    private void testRunProductEngine() {
+        String html = readAsset(this.getAssets(), "ProductEnginePage.html");
+        WebView webView = new WebView(this);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.addJavascriptInterface(new MyJavascriptInterface(this), "androidInterface");
+        String runtime = "var inputJson = {\n"
+            + "    \"policy\" : {\n"
+            + "                \"proposal_date\" : \"19-03-2016\",\n"
+            + "                \"proposal_start_date\" : \"01-03-2016\",\n"
+            + "                \"pay_method\" : \"cash\",\n"
+            + "                \"prem_freq\"  : \"1\",\n"
+            + "                \"people\" : [\n"
+            + "                    {   \"name\":\"Insured\",\n"
+            + "                        \"dob\":\"12-03-1986\",\n"
+            + "                        \"gender\":\"male\" ,\n"
+            + "                        \"job_class\":1,\n"
+            + "                        \"age\" : 29,\n"
+            + "                        \"is_ph\" : true\n"
+            + "                    },\n"
+            + "                    {   \"name\":\"Policyholder\", \n"
+            + "                        \"dob\":\"12-03-1982\",\n"
+            + "                        \"gender\":\"male\" ,\n"
+            + "                        \"age\" : 33,\n"
+            + "                        \"is_ph\" : false\n"
+            + "                    },\n"
+            + "                    {   \"name\":\"Spouse\",\n"
+            + "                        \"dob\":\"12-03-1985\",\n"
+            + "                        \"gender\":\"female\" ,\n"
+            + "                        \"age\" : 30,\n"
+            + "                        \"is_ph\" : false\n"
+            + "                    },\n"
+            + "\n"
+            + "                ],\n"
+            + "                 \"products\": [\n"
+            + "                    {   \"product_id\" : 6000,\n"
+            + "                        \"internal_id\" : \"ZLIFE01\",\n"
+            + "                        \"initial_sa\" : 150000000,\n"
+            + "                        \"la\" : 0,\n"
+            + "                    }]\n"
+            + "               }\n"
+            + "}\n";
+        runtime += "var result = engine.calc( inputJson, ['ap'] );\n";
+        runtime += "androidInterface.processReturnValue(result.policy.products[0].ap.toString());";
+        html = html.replaceAll("\\$\\{runtimeScript\\}", runtime);
+        webView.loadDataWithBaseURL(null, html, "text/html", "UTF-8",null);
+    }
+
+    private static class MyJavascriptInterface {
+        private Context context;
+
+        public MyJavascriptInterface(Context context) {
+            this.context = context;
+        }
+
+        @JavascriptInterface
+        public void processReturnValue(String value) {
+            Toast.makeText(context, value, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Reads the text of an asset. Should not be run on the UI thread.
+     *
+     * @param mgr
+     *            The {@link AssetManager} obtained via {@link Context#getAssets()}
+     * @param path
+     *            The path to the asset.
+     * @return The plain text of the asset
+     */
+    public static String readAsset(AssetManager mgr, String path) {
+        String contents = "";
+        InputStream is = null;
+        BufferedReader reader = null;
+        try {
+            is = mgr.open(path);
+            reader = new BufferedReader(new InputStreamReader(is));
+            contents = reader.readLine();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                contents += '\n' + line;
+            }
+        } catch (final Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException ignored) {
                 }
             }
-        });
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException ignored) {
+                }
+            }
+        }
+        return contents;
     }
 
     private void setupNav() {
