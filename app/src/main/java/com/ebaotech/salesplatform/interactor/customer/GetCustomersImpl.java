@@ -5,6 +5,7 @@ import com.ebaotech.salesplatform.core.dao.CustomerDao;
 import com.ebaotech.salesplatform.domain.Customer;
 import com.ebaotech.salesplatform.domain.CustomerSearch;
 
+import com.ebaotech.salesplatform.mapper.domain2bo.CustomerDomainBoMapper;
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
@@ -52,11 +53,13 @@ public class GetCustomersImpl implements GetCustomers {
         this.callback = callback;
         List<Customer> customerList;
         if (customerSearch == null) {
-            customerList = CustomerMapper.convertCustomerListToDomain(customerDao.queryForAll());
+            customerList = CustomerDomainBoMapper.convertCustomerListToDomain(
+                customerDao.queryForAll());
         } else {
-            customerList = CustomerMapper.convertCustomerListToDomain(
+            customerList = CustomerDomainBoMapper.convertCustomerListToDomain(
                 customerDao.queryByCriteria(customerSearch.getName(), customerSearch.getGender(),
-                    customerSearch.getAgeFrom(), customerSearch.getAgeTo(), customerSearch.getIdNumber()));
+                    customerSearch.getAgeFrom(), customerSearch.getAgeTo(),
+                    customerSearch.getIdNumber()));
         }
         onItemsLoaded(customerList);
     }

@@ -1,4 +1,4 @@
-package com.ebaotech.salesplatform.interactor.customer;
+package com.ebaotech.salesplatform.mapper.domain2bo;
 
 import com.ebaotech.salesplatform.core.bo.AddressBo;
 import com.ebaotech.salesplatform.core.bo.CustomerBo;
@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * Created by haydn.chen on 3/9/2016.
  */
-public class CustomerMapper {
+public class CustomerDomainBoMapper {
 
   public static Customer convertCustomerToDomain(CustomerBo customerBo) {
     Customer customer = new Customer();

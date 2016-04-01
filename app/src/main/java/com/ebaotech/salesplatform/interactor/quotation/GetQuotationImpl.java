@@ -3,7 +3,7 @@
 import com.ebaotech.salesplatform.core.dao.CustomerDao;
 import com.ebaotech.salesplatform.core.dao.QuotationDao;
 import com.ebaotech.salesplatform.domain.Quotation;
-import com.ebaotech.salesplatform.interactor.customer.CustomerMapper;
+import com.ebaotech.salesplatform.mapper.domain2bo.CustomerDomainBoMapper;
 
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
@@ -43,7 +43,8 @@ public class GetQuotationImpl implements GetQuotation {
     public void newQuotation(String policyHolderId, Callback callback) {
         this.callback = callback;
         Quotation quotation = new Quotation();
-        quotation.setPolicyHolder(CustomerMapper.convertCustomerToDomain(customerDao.queryForId(Integer.valueOf(policyHolderId))));
+        quotation.setPolicyHolder(CustomerDomainBoMapper.convertCustomerToDomain(
+            customerDao.queryForId(Integer.valueOf(policyHolderId))));
         onItemLoaded(quotation);
     }
 

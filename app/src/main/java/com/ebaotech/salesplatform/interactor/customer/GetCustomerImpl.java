@@ -9,6 +9,7 @@ import com.ebaotech.salesplatform.core.dao.FamilyMemberDao;
 import com.ebaotech.salesplatform.domain.Address;
 import com.ebaotech.salesplatform.domain.Customer;
 import com.ebaotech.salesplatform.domain.FamilyMember;
+import com.ebaotech.salesplatform.mapper.domain2bo.CustomerDomainBoMapper;
 import com.j256.ormlite.dao.ForeignCollection;
 import hugo.weaving.DebugLog;
 import org.androidannotations.annotations.Background;
@@ -61,7 +62,8 @@ public class GetCustomerImpl implements GetCustomer {
         this.loadCallback = loadCallback;
         Customer customer;
         if (StringUtils.isNotBlank(customerId)) {
-            customer = CustomerMapper.convertCustomerToDomain(customerDao.queryForId(Integer.valueOf(customerId)));
+            customer = CustomerDomainBoMapper.convertCustomerToDomain(
+                customerDao.queryForId(Integer.valueOf(customerId)));
         } else {
             customer = new Customer();
         }
@@ -112,7 +114,7 @@ public class GetCustomerImpl implements GetCustomer {
         customerBo.setAddresses(addressBos);
         if (customer.getAddresses() != null) {
             for (Address address : customer.getAddresses()) {
-                AddressBo addressBo = CustomerMapper.convertAddressToBo(address);
+                AddressBo addressBo = CustomerDomainBoMapper.convertAddressToBo(address);
                 addressBo.setCustomer(customerBo);
                 customerBo.getAddresses().add(addressBo);
             }
@@ -121,7 +123,8 @@ public class GetCustomerImpl implements GetCustomer {
         customerBo.setFamilyMembers(familyMemberBos);
         if (customer.getFamilyMembers()!=null) {
             for (FamilyMember familyMember : customer.getFamilyMembers()) {
-                FamilyMemberBo familyMemberBo = CustomerMapper.convertFamilyMemberToBo(familyMember);
+                FamilyMemberBo familyMemberBo = CustomerDomainBoMapper.convertFamilyMemberToBo(
+                    familyMember);
                 familyMemberBo.setCustomer(customerBo);
                 customerBo.getFamilyMembers().add(familyMemberBo);
             }
