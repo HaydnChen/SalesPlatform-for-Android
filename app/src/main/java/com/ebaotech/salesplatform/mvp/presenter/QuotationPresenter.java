@@ -5,6 +5,7 @@ import com.ebaotech.salesplatform.core.mvp.View;
 import com.ebaotech.salesplatform.domain.Quotation;
 import com.ebaotech.salesplatform.interactor.quotation.GetQuotation;
 import com.ebaotech.salesplatform.interactor.quotation.GetQuotationImpl;
+import com.ebaotech.salesplatform.mapper.domain2model.CustomerDomainModelMapper;
 import com.ebaotech.salesplatform.mvp.view.QuotationView;
 import com.ebaotech.salesplatform.mvp.view.model.quotation.QuotationSearchModel;
 import com.ebaotech.salesplatform.mvp.view.model.quotation.QuotationViewModel;
@@ -91,7 +92,8 @@ public class QuotationPresenter extends BasePresenter implements Presenter<Quota
         quotationViewModel.setProductId(quotation.getProductId());
         quotationViewModel.setPremium(quotation.getPremium());
 
-        quotationViewModel.setPolicyHolder(CustomerPresenter.convertCustomerToModel(quotation.getPolicyHolder()));
+        quotationViewModel.setPolicyHolder(
+            CustomerDomainModelMapper.convertCustomerToModel(quotation.getPolicyHolder()));
 
         return quotationViewModel;
     }
