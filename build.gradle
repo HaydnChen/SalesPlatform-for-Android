@@ -20,7 +20,7 @@ ext{
     buildToolsVersion = '23.0.2'
     androidGradleVersion = '1.5.0'
 
-    androidAnnotationsVersion = '3.3.2'
+    androidAnnotationsVersion = '4.0.0'
 
     hugoVersion = '1.2.1'
     androidAptVersion = '1.4+'

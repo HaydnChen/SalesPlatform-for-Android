@@ -47,6 +47,9 @@ android {
         exclude 'META-INF/NOTICE.txt'
         exclude 'LICENSE'
         exclude 'LICENSE.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/notice.txt'
     }
 
 
@@ -77,6 +80,12 @@ dependencies {
 
     apt "org.androidannotations:androidannotations:${rootProject.ext.androidAnnotationsVersion}"
     compile "org.androidannotations:androidannotations-api:${rootProject.ext.androidAnnotationsVersion}"
+
+    apt "org.androidannotations:rest-spring:${rootProject.ext.androidAnnotationsVersion}"
+    compile "org.androidannotations:rest-spring-api:${rootProject.ext.androidAnnotationsVersion}"
+
+    compile 'org.springframework.android:spring-android-rest-template:2.0.0.M1'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1.3'
 
     compile "com.squareup.picasso:picasso:${rootProject.ext.picassoVersion}"
     compile "com.squareup.retrofit:retrofit:${rootProject.ext.retrofitVersion}"
